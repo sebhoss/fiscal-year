@@ -28,29 +28,29 @@
   <artifactId>fiscal-year</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <dependencies>
-  	<dependency>
-  		<groupId>joda-time</groupId>
-  		<artifactId>joda-time</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.github.sebhoss</groupId>
-  		<artifactId>common-annotations</artifactId>
-  		<version>1.0.0</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.google.guava</groupId>
-  		<artifactId>guava</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.github.sebhoss.datasets</groupId>
-  		<artifactId>datasets</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  		<scope>test</scope>
-  	</dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sebhoss</groupId>
+      <artifactId>common-annotations</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sebhoss.datasets</groupId>
+      <artifactId>datasets</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
