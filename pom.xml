@@ -38,9 +38,9 @@
   		<scope>test</scope>
   	</dependency>
   	<dependency>
-  		<groupId>com.github.sebhoss.common</groupId>
-  		<artifactId>common-annotation</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<groupId>com.github.sebhoss</groupId>
+  		<artifactId>common-annotations</artifactId>
+  		<version>1.0.0</version>
   	</dependency>
   	<dependency>
   		<groupId>com.google.guava</groupId>
