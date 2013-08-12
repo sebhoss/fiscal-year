@@ -41,10 +41,10 @@ final class FiscalDateImplementation implements FiscalDate {
         final int calendarYear = this.currentCalendarDate.getYear();
         final int calendarMonth = this.currentCalendarDate.getMonthOfYear();
         final Months currentCalendarMonth = Months.months(calendarMonth);
-        final int comparison = this.monthComparatorForFiscalYearCalculation.compare(this.fiscalYearStartMonth,
+        final int yearOffset = this.monthComparatorForFiscalYearCalculation.compare(this.fiscalYearStartMonth,
                 currentCalendarMonth);
 
-        return calendarYear + comparison;
+        return calendarYear + yearOffset;
     }
 
     @Override
