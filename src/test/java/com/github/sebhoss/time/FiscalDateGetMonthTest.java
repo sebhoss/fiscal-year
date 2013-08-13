@@ -1,8 +1,10 @@
-/* This program is free software. It comes without any warranty, to
+/*
+ * This program is free software. It comes without any warranty, to
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details. */
+ * http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.time;
 
 import java.util.Comparator;
@@ -43,7 +45,7 @@ public class FiscalDateGetMonthTest {
      */
     @DataPoints
     public static Comparator<Months>[] COMPARATORS() {
-        Comparator<Months>[] array = ObjectArrays.newArray(Comparator.class, 2);
+        final Comparator<Months>[] array = ObjectArrays.newArray(Comparator.class, 2);
         array[0] = new FiscalYearStartsEarly();
         array[1] = new FiscalYearStartsLate();
         return array;
@@ -62,13 +64,13 @@ public class FiscalDateGetMonthTest {
      */
     @Theory
     public void shouldSubtractMonthWhenCurrentDateIsAfterStartDate(final Months startDate,
-            final Comparator<Months> monthComparator, LocalDate currentDate) {
+            final Comparator<Months> monthComparator, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
 
         // When
-        int fiscalMonth = fiscalDate.getFiscalMonth();
+        final int fiscalMonth = fiscalDate.getFiscalMonth();
 
         // Then
         Assert.assertEquals(currentDate.getMonthOfYear() - startDate.getMonths() + 1, fiscalMonth);
@@ -87,14 +89,14 @@ public class FiscalDateGetMonthTest {
      */
     @Theory
     public void shouldAddMonthWhenCurrentDateIsBeforeStartDate(final Months startDate,
-            final Comparator<Months> monthComparator, LocalDate currentDate) {
+            final Comparator<Months> monthComparator, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
         final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
         final int fiscalMonthOffset = currentDate.monthOfYear().getMaximumValue() - startDate.getMonths() + 1;
 
         // When
-        int fiscalMonth = fiscalDate.getFiscalMonth();
+        final int fiscalMonth = fiscalDate.getFiscalMonth();
 
         // Then
         Assert.assertEquals(currentDate.getMonthOfYear() + fiscalMonthOffset, fiscalMonth);

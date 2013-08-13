@@ -1,8 +1,10 @@
-/* This program is free software. It comes without any warranty, to
+/*
+ * This program is free software. It comes without any warranty, to
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details. */
+ * http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.time;
 
 import java.util.Comparator;
@@ -45,7 +47,7 @@ public class EarlyFiscalDateGetYearTest {
      */
     @Before
     public void createComparator() {
-        this.monthComparator = new FiscalYearStartsEarly();
+        monthComparator = new FiscalYearStartsEarly();
     }
 
     /**
@@ -61,7 +63,7 @@ public class EarlyFiscalDateGetYearTest {
     public void shouldAddYearWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, this.monthComparator, currentDate);
+        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -83,7 +85,7 @@ public class EarlyFiscalDateGetYearTest {
     public void shouldNotAddYearWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, this.monthComparator, currentDate);
+        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();

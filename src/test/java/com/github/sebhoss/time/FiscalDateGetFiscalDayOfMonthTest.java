@@ -1,8 +1,10 @@
-/* This program is free software. It comes without any warranty, to
+/*
+ * This program is free software. It comes without any warranty, to
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details. */
+ * http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.time;
 
 import java.util.Comparator;
@@ -52,12 +54,12 @@ public class FiscalDateGetFiscalDayOfMonthTest {
      */
     @Theory
     public void shouldReturnCalendarDayAsFiscalDay(final Months startDate, final Comparator<Months> monthComparator,
-            LocalDate currentDate) {
+            final LocalDate currentDate) {
         // Given
-        FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
 
         // When
-        int fiscalDayOfMonth = fiscalDate.getFiscalDayOfMonth();
+        final int fiscalDayOfMonth = fiscalDate.getFiscalDayOfMonth();
 
         // Then
         Assert.assertEquals(currentDate.getDayOfMonth(), fiscalDayOfMonth);

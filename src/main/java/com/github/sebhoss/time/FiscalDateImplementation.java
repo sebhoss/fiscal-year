@@ -1,8 +1,10 @@
-/* This program is free software. It comes without any warranty, to
+/*
+ * This program is free software. It comes without any warranty, to
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://www.wtfpl.net/ for more details. */
+ * http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.time;
 
 import java.util.Comparator;
@@ -38,10 +40,10 @@ final class FiscalDateImplementation implements FiscalDate {
 
     @Override
     public int getFiscalYear() {
-        final int calendarYear = this.currentCalendarDate.getYear();
-        final int calendarMonth = this.currentCalendarDate.getMonthOfYear();
+        final int calendarYear = currentCalendarDate.getYear();
+        final int calendarMonth = currentCalendarDate.getMonthOfYear();
         final Months currentCalendarMonth = Months.months(calendarMonth);
-        final int yearOffset = this.monthComparatorForFiscalYearCalculation.compare(this.fiscalYearStartMonth,
+        final int yearOffset = monthComparatorForFiscalYearCalculation.compare(fiscalYearStartMonth,
                 currentCalendarMonth);
 
         return calendarYear + yearOffset;
@@ -49,14 +51,14 @@ final class FiscalDateImplementation implements FiscalDate {
 
     @Override
     public int getFiscalMonth() {
-        final int calendarMonth = this.currentCalendarDate.getMonthOfYear();
-        final int fiscalStartMonth = this.fiscalYearStartMonth.getMonths();
+        final int calendarMonth = currentCalendarDate.getMonthOfYear();
+        final int fiscalStartMonth = fiscalYearStartMonth.getMonths();
         int month = 0;
 
         if (fiscalStartMonth <= calendarMonth) {
             month = calendarMonth - fiscalStartMonth + 1;
         } else {
-            final int maximumNumberOfMonths = this.currentCalendarDate.monthOfYear().getMaximumValue();
+            final int maximumNumberOfMonths = currentCalendarDate.monthOfYear().getMaximumValue();
             final int fiscalMonthOffset = maximumNumberOfMonths - fiscalStartMonth + 1;
             month = calendarMonth + fiscalMonthOffset;
         }
@@ -66,7 +68,7 @@ final class FiscalDateImplementation implements FiscalDate {
 
     @Override
     public int getFiscalDayOfMonth() {
-        return this.currentCalendarDate.getDayOfMonth();
+        return currentCalendarDate.getDayOfMonth();
     }
 
     @Override
@@ -83,85 +85,84 @@ final class FiscalDateImplementation implements FiscalDate {
 
     @Override
     public int getCalendarYear() {
-        return this.currentCalendarDate.getYear();
+        return currentCalendarDate.getYear();
     }
 
     @Override
     public int getCalendarMonth() {
-        return this.currentCalendarDate.getMonthOfYear();
+        return currentCalendarDate.getMonthOfYear();
     }
 
     @Override
     public int getCalendarDayOfMonth() {
-        return this.currentCalendarDate.getDayOfMonth();
+        return currentCalendarDate.getDayOfMonth();
     }
 
     @Override
     public int getCalendarDayOfYear() {
-        return this.currentCalendarDate.getDayOfYear();
+        return currentCalendarDate.getDayOfYear();
     }
 
     @Override
     public int getCalendarWeekOfWeekyear() {
-        return this.currentCalendarDate.getWeekOfWeekyear();
+        return currentCalendarDate.getWeekOfWeekyear();
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusYears(final int years) {
-        return this.copyWithNewDate(this.currentCalendarDate.plusYears(years));
+        return copyWithNewDate(currentCalendarDate.plusYears(years));
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusMonths(final int months) {
-        return this.copyWithNewDate(this.currentCalendarDate.plusMonths(months));
+        return copyWithNewDate(currentCalendarDate.plusMonths(months));
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusWeeks(final int weeks) {
-        return this.copyWithNewDate(this.currentCalendarDate.plusWeeks(weeks));
+        return copyWithNewDate(currentCalendarDate.plusWeeks(weeks));
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusDays(final int days) {
-        return this.copyWithNewDate(this.currentCalendarDate.plusDays(days));
+        return copyWithNewDate(currentCalendarDate.plusDays(days));
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusYears(final int years) {
-        return this.copyWithNewDate(this.currentCalendarDate.minusYears(years));
+        return copyWithNewDate(currentCalendarDate.minusYears(years));
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusMonths(final int months) {
-        return this.copyWithNewDate(this.currentCalendarDate.minusMonths(months));
+        return copyWithNewDate(currentCalendarDate.minusMonths(months));
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusWeeks(final int weeks) {
-        return this.copyWithNewDate(this.currentCalendarDate.minusWeeks(weeks));
+        return copyWithNewDate(currentCalendarDate.minusWeeks(weeks));
     }
 
     @Override
     @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusDays(final int days) {
-        return this.copyWithNewDate(this.currentCalendarDate.minusDays(days));
+        return copyWithNewDate(currentCalendarDate.minusDays(days));
     }
 
     private FiscalDateImplementation copyWithNewDate(final LocalDate newDate) {
-        return new FiscalDateImplementation(this.fiscalYearStartMonth, this.monthComparatorForFiscalYearCalculation,
-                newDate);
+        return new FiscalDateImplementation(fiscalYearStartMonth, monthComparatorForFiscalYearCalculation, newDate);
     }
 
     @Override
     public LocalDate asLocalDate() {
-        return this.currentCalendarDate;
+        return currentCalendarDate;
     }
 
 }
