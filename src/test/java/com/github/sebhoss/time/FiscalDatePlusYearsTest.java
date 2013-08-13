@@ -47,7 +47,6 @@ public class FiscalDatePlusYearsTest {
 
     /** The amount of random years to add a given date */
     @DataPoints
-    @SuppressWarnings(CompilerWarnings.NULL)
     public static int[]                RANDOM_YEARS       = DataSets.ints().lowestInclusive(-292275054)
                                                                   .highestInclusive(292278993).build();
 

@@ -47,7 +47,6 @@ public class FiscalDatePlusMonthsTest {
 
     /** The amount of random months to add a given date */
     @DataPoints
-    @SuppressWarnings(CompilerWarnings.NULL)
     public static int[]                RANDOM_MONTHS      = DataSets.ints().build();
 
     /**
