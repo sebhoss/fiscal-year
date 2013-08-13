@@ -13,7 +13,8 @@ import org.joda.time.LocalDate;
 import org.joda.time.Months;
 
 /**
- * TODO: document
+ * Creates {@link FiscalDate fiscal dates} from {@link LocalDate local dates}. Thus converts between calendar years to
+ * fiscal years.
  */
 public final class FiscalYearFactory {
 
@@ -27,7 +28,7 @@ public final class FiscalYearFactory {
 
     /**
      * @param calendarDate
-     *            The date in calendar view.
+     *            The date in a calendar year.
      * @return The corresponding date in a fiscal year.
      */
     public FiscalDate create(final LocalDate calendarDate) {
