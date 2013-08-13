@@ -1,0 +1,71 @@
+h1. Fiscal-Year "!https://secure.travis-ci.org/sebhoss/fiscal-year.png!":http://travis-ci.org/sebhoss/fiscal-year "!https://www.ohloh.net/p/fiscal-year/widgets/project_thin_badge.gif!":https://www.ohloh.net/p/fiscal-year/
+
+p. Your company doesn't work from January 1 to December 31? Try fiscal-year, a small Java library which converts calendar-year based dates to corresponding dates in a "fiscal year":http://en.wikipedia.org/wiki/Fiscal_year.
+
+h2. Usage
+
+p. First create a @FiscalYearFactory@ which holds the configuration of your company's fiscal year:
+
+bc. // fiscal year starts at month 11 of the 'previous' year
+FiscalYearFactory earlyYearFactory = FiscalYears.earlyFiscalYear(11);
+// fiscal year starts at month 3 in the 'current' year
+FiscalYearFactory lateYearFactory = FiscalYears.lateFiscalYear(3);
+
+p. Then use this factory to convert a calendar-year based @LocalDate@ to a corresponding @FiscalDate@:
+
+bc. LocalDate calendarDate = LocalDate.now();
+FiscalDate fiscalDate = factory.create(calendarDate);
+
+p. Query the newly created @FiscalDate@ to retrieve the usual suspects of attributes:
+
+bc.. fiscalDate.getFiscalYear();
+fiscalDate.getFiscalMonth();
+fiscalDate.getFiscalDayOfYear();
+fiscalDate.getFiscalWeekOfYear();
+
+fiscalDate.getCalendarYear();
+fiscalDate.getCalendarMonth();
+fiscalDate.getCalendarDayOfMonth();
+fiscalDate.getCalendarDayOfYear();
+fiscalDate.getCalendarWeekOfWeekyear();
+
+p. Do some math with dates as follows:
+
+bc. fiscalDate.plusYears(years);
+fiscalDate.plusMonths(months);
+fiscalDate.plusWeeks(int weeks);
+fiscalDate.plusDays(int days);
+fiscalDate.minusYears(int years);
+fiscalDate.minusMonths(int months);
+fiscalDate.minusWeeks(int weeks);
+fiscalDate.minusDays(int days);
+    
+p. Or finally convert it back to a @LocalDate@:
+
+bc. LocalDate calendarDate = fiscalDate.asLocalDate();
+
+p. All classes are immutable and therefore thread-safe. The library currently relies on "Joda Time":http://joda-time.sourceforge.net/ but will be updated to use the new "JSR 310":http://jcp.org/en/jsr/detail?id=310 based Date API. 
+
+h2. Integration
+
+bc. 
+<dependency>
+  <groupId>com.github.sebhoss</groupId>
+  <artifactId>fiscal-year</artifactId>
+  <version>1.0.0</version>
+</dependency>
+
+
+h2. Development
+
+h3. License
+
+p. This program is free software. It comes without any warranty, to the extent permitted by applicable law. You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by Sam Hocevar. See LICENSE or "http://www.wtfpl.net/":http://www.wtfpl.net/ for more details.
+
+h3. Setup
+
+p. This projects uses "Java":http://www.java.com/, "Maven":http://maven.apache.org/ and "Git":http://git-scm.com/ as the main development tools. To build the project yourself just download & install at least Maven 3.0 and call *mvn install* inside the project folder. Maven should then proceed to clean, build, package and install this project.
+
+h3. Versioning
+
+p. This project follows the "semantic versioning":http://semver.org/ guidelines.
