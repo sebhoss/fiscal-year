@@ -67,11 +67,6 @@ final class FiscalDateImplementation implements FiscalDate {
     }
 
     @Override
-    public int getFiscalDayOfMonth() {
-        return currentCalendarDate.getDayOfMonth();
-    }
-
-    @Override
     public int getFiscalDayOfYear() {
         // TODO Auto-generated method stub
         return 0;

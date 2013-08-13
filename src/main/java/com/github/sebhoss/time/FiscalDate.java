@@ -25,11 +25,6 @@ public interface FiscalDate {
     int getFiscalMonth();
 
     /**
-     * @return The current day in the current month in the current fiscal year.
-     */
-    int getFiscalDayOfMonth();
-
-    /**
      * @return The current day in the current fiscal year.
      */
     int getFiscalDayOfYear();
