@@ -47,7 +47,7 @@
       <artifactId>guava</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.github.sebhoss.datasets</groupId>
+      <groupId>com.github.sebhoss</groupId>
       <artifactId>datasets</artifactId>
       <version>0.0.1-SNAPSHOT</version>
       <scope>test</scope>
