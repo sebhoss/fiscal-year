@@ -16,9 +16,6 @@ import org.joda.time.Weeks;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 
-/**
- * TODO: document
- */
 final class FiscalDateImplementation implements FiscalDate {
 
     private final Months             fiscalYearStartMonth;
