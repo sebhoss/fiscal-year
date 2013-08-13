@@ -18,7 +18,7 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.github.sebhoss.datasets.DataSets;
+import com.github.sebhoss.datasets.Datasets;
 
 /**
  * TODO: document!
@@ -49,7 +49,7 @@ public class FiscalDatePlusYearsTest {
 
     /** The amount of random years to add a given date */
     @DataPoints
-    public static int[]                RANDOM_YEARS       = DataSets.ints().lowestInclusive(-292275054)
+    public static int[]                RANDOM_YEARS       = Datasets.ints().lowestInclusive(-292275054)
                                                                   .highestInclusive(292278993).build();
 
     /**

@@ -18,7 +18,7 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.github.sebhoss.datasets.DataSets;
+import com.github.sebhoss.datasets.Datasets;
 
 /**
  * TODO: document!
@@ -49,7 +49,7 @@ public class FiscalDatePlusMonthsTest {
 
     /** The amount of random months to add a given date */
     @DataPoints
-    public static int[]                RANDOM_MONTHS      = DataSets.ints().build();
+    public static int[]                RANDOM_MONTHS      = Datasets.ints().build();
 
     /**
      * Ensures that for any given date a number of years can be added.
