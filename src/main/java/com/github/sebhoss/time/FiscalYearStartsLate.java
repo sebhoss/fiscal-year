@@ -7,6 +7,7 @@
  */
 package com.github.sebhoss.time;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import org.joda.time.Months;
@@ -14,7 +15,9 @@ import org.joda.time.Months;
 /**
  * TODO: document
  */
-final class FiscalYearStartsLate implements Comparator<Months> {
+final class FiscalYearStartsLate implements Comparator<Months>, Serializable {
+
+    private static final long serialVersionUID = 524301361114072673L;
 
     @Override
     public int compare(final Months fiscalStartMonth, final Months currentMonth) {
