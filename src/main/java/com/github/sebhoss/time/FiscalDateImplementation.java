@@ -9,8 +9,10 @@ package com.github.sebhoss.time;
 
 import java.util.Comparator;
 
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
+import org.joda.time.Weeks;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 
@@ -68,14 +70,18 @@ final class FiscalDateImplementation implements FiscalDate {
 
     @Override
     public int getFiscalDayOfYear() {
-        // TODO Auto-generated method stub
-        return 0;
+        final LocalDate fiscalYearStartDate = new LocalDate(getFiscalYear(), fiscalYearStartMonth.getMonths(), 1);
+        final Days daysBetween = Days.daysBetween(fiscalYearStartDate, currentCalendarDate);
+
+        return daysBetween.getDays();
     }
 
     @Override
     public int getFiscalWeekOfYear() {
-        // TODO Auto-generated method stub
-        return 0;
+        final LocalDate fiscalYearStartDate = new LocalDate(getFiscalYear(), fiscalYearStartMonth.getMonths(), 1);
+        final Weeks weeksBetween = Weeks.weeksBetween(fiscalYearStartDate, currentCalendarDate);
+
+        return weeksBetween.getWeeks();
     }
 
     @Override
