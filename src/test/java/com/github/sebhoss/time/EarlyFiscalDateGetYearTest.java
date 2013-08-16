@@ -22,7 +22,7 @@ import org.junit.runner.RunWith;
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 
 /**
- * TODO: document!
+ * Test cases for FiscalYearStartsEarly.
  */
 @RunWith(Theories.class)
 public class EarlyFiscalDateGetYearTest {

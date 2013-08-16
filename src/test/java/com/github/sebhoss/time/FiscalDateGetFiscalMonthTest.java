@@ -19,37 +19,29 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.google.common.collect.ObjectArrays;
 
 /**
- * TODO: document!
+ * Test cases for {@link FiscalDate#getFiscalMonth()}.
  */
 @RunWith(Theories.class)
 @SuppressWarnings(CompilerWarnings.STATIC_METHOD)
-public class FiscalDateGetMonthTest {
+public class FiscalDateGetFiscalMonthTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static Months[]    START_DATES        = TestObjects.supportedMonths();
+    public static Months[]             START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
-    public static LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
+    public static LocalDate[]          MONTH_START_DATES  = TestObjects.startDates();
 
     /** @see TestObjects#middleDates() */
     @DataPoints
-    public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
+    public static LocalDate[]          MONTH_MIDDLE_DATES = TestObjects.middleDates();
 
-    /**
-     * @return Collection of month comparators.
-     */
+    /** @see TestObjects#comparators() */
     @DataPoints
-    public static Comparator<Months>[] COMPARATORS() {
-        final Comparator<Months>[] array = ObjectArrays.newArray(Comparator.class, 2);
-        array[0] = new FiscalYearStartsEarly();
-        array[1] = new FiscalYearStartsLate();
-        return array;
-    }
+    public static Comparator<Months>[] COMPARATORS        = TestObjects.comparators();
 
     /**
      * Ensures that for any given date the fiscal month will be decreased if the current calendar date is after the

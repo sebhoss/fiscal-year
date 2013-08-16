@@ -15,7 +15,7 @@ import org.joda.time.Months;
 import com.google.common.collect.ObjectArrays;
 
 /**
- * TODO: document
+ * Collection of common test objects.
  */
 public final class TestObjects {
 
