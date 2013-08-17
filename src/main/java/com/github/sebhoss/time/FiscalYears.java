@@ -29,9 +29,7 @@ public final class FiscalYears {
      * @return A new factory which creates appropriate {@link FiscalDate}s.
      */
     public static FiscalYearFactory earlyFiscalYear(final int startMonth) {
-        return new FiscalYearFactory(new EarlyFiscalYearCalculator(startMonth),
-                new FiscalMonthCalculatorImplementation(startMonth), new FiscalDayOfYearCalculatorImplementation(),
-                new FiscalWeekOfYearCalculatorImplementation());
+        return fiscalYearFactory(startMonth, new EarlyFiscalYearCalculator(startMonth));
     }
 
     /**
@@ -49,9 +47,12 @@ public final class FiscalYears {
      * @return A new factory which creates appropriate {@link FiscalDate}s.
      */
     public static FiscalYearFactory lateFiscalYear(final int startMonth) {
-        return new FiscalYearFactory(new LateFiscalYearCalculator(startMonth), new FiscalMonthCalculatorImplementation(
-                startMonth), new FiscalDayOfYearCalculatorImplementation(),
-                new FiscalWeekOfYearCalculatorImplementation());
+        return fiscalYearFactory(startMonth, new LateFiscalYearCalculator(startMonth));
+    }
+
+    private static FiscalYearFactory fiscalYearFactory(final int startMonth, final FiscalYearCalculator yearCalculator) {
+        return new FiscalYearFactory(yearCalculator, new FiscalMonthCalculatorImplementation(startMonth),
+                new FiscalDayOfYearCalculatorImplementation(), new FiscalWeekOfYearCalculatorImplementation());
     }
 
     private FiscalYears() {
