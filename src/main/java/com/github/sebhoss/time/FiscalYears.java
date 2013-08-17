@@ -10,7 +10,7 @@ package com.github.sebhoss.time;
 import org.joda.time.Months;
 
 /**
- * TODO: document
+ * Factory for {@link FiscalYearFactory}s.
  */
 public final class FiscalYears {
 
