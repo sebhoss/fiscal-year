@@ -19,19 +19,7 @@ final class FiscalDateImplementation implements FiscalDate {
     private final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator;
     private final LocalDate                  currentCalendarDate;
 
-    /**
-     * @param fiscalYearCalculator
-     *            The calculator to calculate the fiscal year.
-     * @param fiscalMonthCalculator
-     *            The calculator to calculate the fiscal month.
-     * @param fiscalDayOfYearCalculator
-     *            The calculator to calculate the fiscal day of year.
-     * @param fiscalWeekOfYearCalculator
-     *            The calculator to calculate the fiscal week of year.
-     * @param currentCalendarDate
-     *            The current calendar date.
-     */
-    public FiscalDateImplementation(final FiscalYearCalculator fiscalYearCalculator,
+    FiscalDateImplementation(final FiscalYearCalculator fiscalYearCalculator,
             final FiscalMonthCalculator fiscalMonthCalculator,
             final FiscalDayOfYearCalculator fiscalDayOfYearCalculator,
             final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator, final LocalDate currentCalendarDate) {
