@@ -7,8 +7,6 @@
  */
 package com.github.sebhoss.time;
 
-import java.util.Comparator;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.junit.Assert;
@@ -29,19 +27,15 @@ public class FiscalDateGetFiscalMonthTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static Months[]             START_DATES        = TestObjects.supportedMonths();
+    public static Months[]    START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
-    public static LocalDate[]          MONTH_START_DATES  = TestObjects.startDates();
+    public static LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
 
     /** @see TestObjects#middleDates() */
     @DataPoints
-    public static LocalDate[]          MONTH_MIDDLE_DATES = TestObjects.middleDates();
-
-    /** @see TestObjects#comparators() */
-    @DataPoints
-    public static Comparator<Months>[] COMPARATORS        = TestObjects.comparators();
+    public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
 
     /**
      * Ensures that for any given date the fiscal month will be decreased if the current calendar date is after the
@@ -49,17 +43,14 @@ public class FiscalDateGetFiscalMonthTest {
      * 
      * @param startDate
      *            The start date of the fiscal year.
-     * @param monthComparator
-     *            The comparator to use.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldSubtractMonthWhenCurrentDateIsAfterStartDate(final Months startDate,
-            final Comparator<Months> monthComparator, final LocalDate currentDate) {
+    public void shouldSubtractMonthWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).create(currentDate);
 
         // When
         final int fiscalMonth = fiscalDate.getFiscalMonth();
@@ -74,17 +65,14 @@ public class FiscalDateGetFiscalMonthTest {
      * 
      * @param startDate
      *            The start date of the fiscal year.
-     * @param monthComparator
-     *            The comparator to use.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldAddMonthWhenCurrentDateIsBeforeStartDate(final Months startDate,
-            final Comparator<Months> monthComparator, final LocalDate currentDate) {
+    public void shouldAddMonthWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).create(currentDate);
         final int fiscalMonthOffset = currentDate.monthOfYear().getMaximumValue() - startDate.getMonths() + 1;
 
         // When

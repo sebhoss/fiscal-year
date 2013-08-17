@@ -7,12 +7,8 @@
  */
 package com.github.sebhoss.time;
 
-import java.util.Comparator;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
-
-import com.google.common.collect.ObjectArrays;
 
 /**
  * Collection of common test objects.
@@ -25,16 +21,6 @@ public final class TestObjects {
     public static Months[] supportedMonths() {
         return new Months[] { Months.TWO, Months.THREE, Months.FOUR, Months.FIVE, Months.SIX, Months.SEVEN,
                 Months.EIGHT, Months.NINE, Months.TEN, Months.ELEVEN, Months.TWELVE };
-    }
-
-    /**
-     * @return An array of all known months comparators which are used while determining the fiscal year.
-     */
-    public static Comparator<Months>[] comparators() {
-        final Comparator<Months>[] array = ObjectArrays.newArray(Comparator.class, 2);
-        array[0] = new FiscalYearStartsEarly();
-        array[1] = new FiscalYearStartsLate();
-        return array;
     }
 
     /**

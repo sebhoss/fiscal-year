@@ -7,8 +7,6 @@
  */
 package com.github.sebhoss.time;
 
-import java.util.Comparator;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.junit.Assert;
@@ -28,35 +26,48 @@ public class FiscalDateGetCalendarWeekOfWeekyear {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static Months[]             START_DATES        = TestObjects.supportedMonths();
+    public static Months[]    START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
-    public static LocalDate[]          MONTH_START_DATES  = TestObjects.startDates();
+    public static LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
 
     /** @see TestObjects#middleDates() */
     @DataPoints
-    public static LocalDate[]          MONTH_MIDDLE_DATES = TestObjects.middleDates();
-
-    /** @see TestObjects#comparators() */
-    @DataPoints
-    public static Comparator<Months>[] COMPARATORS        = TestObjects.comparators();
+    public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
 
     /**
-     * Ensures that for any given date the correct calendar week of weekyear will be returned.
+     * Ensures that for any given date the correct calendar week of weekyear will be returned in an early fiscal year.
      * 
      * @param startDate
      *            The start date of the fiscal year.
-     * @param monthComparator
-     *            The comparator to use.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldReturnCalendarWeekOfWeekyear(final Months startDate, final Comparator<Months> monthComparator,
-            final LocalDate currentDate) {
+    public void shouldReturnCalendarWeekOfWeekyearInEarlyFiscalYear(final Months startDate, final LocalDate currentDate) {
         // Given
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).create(currentDate);
+
+        // When
+        final int calendarWeekOfWeekyear = fiscalDate.getCalendarWeekOfWeekyear();
+
+        // Then
+        Assert.assertEquals(currentDate.getWeekOfWeekyear(), calendarWeekOfWeekyear);
+    }
+
+    /**
+     * Ensures that for any given date the correct calendar week of weekyear will be returned in a late fiscal year.
+     * 
+     * @param startDate
+     *            The start date of the fiscal year.
+     * @param currentDate
+     *            The current date in a calendar year.
+     */
+    @Theory
+    public void shouldReturnCalendarWeekOfWeekyearInLateFiscalYear(final Months startDate, final LocalDate currentDate) {
+        // Given
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).create(currentDate);
 
         // When
         final int calendarWeekOfWeekyear = fiscalDate.getCalendarWeekOfWeekyear();

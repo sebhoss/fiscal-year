@@ -7,8 +7,6 @@
  */
 package com.github.sebhoss.time;
 
-import java.util.Comparator;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.junit.Assert;
@@ -29,45 +27,65 @@ public class FiscalDatePlusMonthsTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static Months[]             START_DATES        = TestObjects.supportedMonths();
+    public static Months[]    START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
-    public static LocalDate[]          MONTH_START_DATES  = TestObjects.startDates();
+    public static LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
 
     /** @see TestObjects#middleDates() */
     @DataPoints
-    public static LocalDate[]          MONTH_MIDDLE_DATES = TestObjects.middleDates();
-
-    /** @see TestObjects#comparators() */
-    @DataPoints
-    public static Comparator<Months>[] COMPARATORS        = TestObjects.comparators();
+    public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
 
     /** The amount of months to add a given date */
     @DataPoints
-    public static int[]                ADDITIONAL_MONTHS  = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 5000 };
+    public static int[]       ADDITIONAL_MONTHS  = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 5000 };
 
     /** The amount of random months to add a given date */
     @DataPoints
-    public static int[]                RANDOM_MONTHS      = Datasets.ints().build();
+    public static int[]       RANDOM_MONTHS      = Datasets.ints().build();
 
     /**
-     * Ensures that for any given date a number of years can be added.
+     * Ensures that for any given date a number of years can be added in an early fiscal year.
      * 
      * @param startDate
      *            The start date of the fiscal year.
-     * @param monthComparator
-     *            The comparator to use.
      * @param currentDate
      *            The current date in a calendar year.
      * @param additionalMonths
      *            The amounts of months to add.
      */
     @Theory
-    public void shouldAddMonths(final Months startDate, final Comparator<Months> monthComparator,
-            final LocalDate currentDate, final int additionalMonths) {
+    public void shouldAddMonthsInEarlyFiscalYear(final Months startDate, final LocalDate currentDate,
+            final int additionalMonths) {
         // Given
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).create(currentDate);
+
+        // When
+        final FiscalDate newDate = fiscalDate.plusMonths(additionalMonths);
+
+        // Then
+        Assert.assertEquals(
+                additionalMonths,
+                Months.monthsBetween(FiscalDatePlusMonthsTest.toLocalDate(fiscalDate),
+                        FiscalDatePlusMonthsTest.toLocalDate(newDate)).getMonths());
+    }
+
+    /**
+     * Ensures that for any given date a number of years can be added in an early fiscal year.
+     * 
+     * @param startDate
+     *            The start date of the fiscal year.
+     * @param currentDate
+     *            The current date in a calendar year.
+     * @param additionalMonths
+     *            The amounts of months to add.
+     */
+    @Theory
+    public void shouldAddMonthsInLateFiscalYear(final Months startDate, final LocalDate currentDate,
+            final int additionalMonths) {
+        // Given
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).create(currentDate);
 
         // When
         final FiscalDate newDate = fiscalDate.plusMonths(additionalMonths);

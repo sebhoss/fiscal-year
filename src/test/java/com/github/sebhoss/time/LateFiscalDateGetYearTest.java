@@ -7,13 +7,10 @@
  */
 package com.github.sebhoss.time;
 
-import java.util.Comparator;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.junit.Assert;
 import org.junit.Assume;
-import org.junit.Before;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -25,30 +22,20 @@ import com.github.sebhoss.common.annotation.CompilerWarnings;
  * Test cases for FiscalYearStartsLate.
  */
 @RunWith(Theories.class)
+@SuppressWarnings(CompilerWarnings.STATIC_METHOD)
 public class LateFiscalDateGetYearTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static Months[]     START_DATES        = TestObjects.supportedMonths();
+    public static Months[]    START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
-    public static LocalDate[]  MONTH_START_DATES  = TestObjects.startDates();
+    public static LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
 
     /** @see TestObjects#middleDates() */
     @DataPoints
-    public static LocalDate[]  MONTH_MIDDLE_DATES = TestObjects.middleDates();
-
-    @SuppressWarnings(CompilerWarnings.NULL)
-    private Comparator<Months> monthComparator;
-
-    /**
-     * Builds the comparator which is used inside this test class.
-     */
-    @Before
-    public void createComparator() {
-        monthComparator = new FiscalYearStartsLate();
-    }
+    public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
 
     /**
      * Ensures that for any given date the fiscal year will not be increased if the current calendar date is after the
@@ -63,7 +50,7 @@ public class LateFiscalDateGetYearTest {
     public void shouldNotAddYearWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).create(currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -85,7 +72,7 @@ public class LateFiscalDateGetYearTest {
     public void shouldSubtractYearWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = new FiscalDateImplementation(startDate, monthComparator, currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).create(currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();

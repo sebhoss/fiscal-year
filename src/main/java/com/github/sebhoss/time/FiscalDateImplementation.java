@@ -7,8 +7,6 @@
  */
 package com.github.sebhoss.time;
 
-import java.util.Comparator;
-
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
@@ -18,9 +16,9 @@ import com.github.sebhoss.common.annotation.CompilerWarnings;
 
 final class FiscalDateImplementation implements FiscalDate {
 
-    private final Months             fiscalYearStartMonth;
-    private final Comparator<Months> monthComparatorForFiscalYearCalculation;
-    private final LocalDate          currentCalendarDate;
+    private final Months               fiscalYearStartMonth;
+    private final FiscalYearCalculator fiscalYearCalculator;
+    private final LocalDate            currentCalendarDate;
 
     /**
      * @param fiscalYearStartMonth
@@ -30,10 +28,10 @@ final class FiscalDateImplementation implements FiscalDate {
      * @param currentCalendarDate
      *            The current calendar date.
      */
-    FiscalDateImplementation(final Months fiscalYearStartMonth,
-            final Comparator<Months> monthComparatorForFiscalYearCalculation, final LocalDate currentCalendarDate) {
+    FiscalDateImplementation(final Months fiscalYearStartMonth, final FiscalYearCalculator fiscalYearCalculator,
+            final LocalDate currentCalendarDate) {
         this.fiscalYearStartMonth = fiscalYearStartMonth;
-        this.monthComparatorForFiscalYearCalculation = monthComparatorForFiscalYearCalculation;
+        this.fiscalYearCalculator = fiscalYearCalculator;
         this.currentCalendarDate = currentCalendarDate;
     }
 
@@ -41,11 +39,8 @@ final class FiscalDateImplementation implements FiscalDate {
     public int getFiscalYear() {
         final int calendarYear = currentCalendarDate.getYear();
         final int calendarMonth = currentCalendarDate.getMonthOfYear();
-        final Months currentCalendarMonth = Months.months(calendarMonth);
-        final int yearOffset = monthComparatorForFiscalYearCalculation.compare(fiscalYearStartMonth,
-                currentCalendarMonth);
 
-        return calendarYear + yearOffset;
+        return fiscalYearCalculator.calculateFiscalYear(calendarYear, calendarMonth);
     }
 
     @Override
@@ -155,7 +150,7 @@ final class FiscalDateImplementation implements FiscalDate {
     }
 
     private FiscalDateImplementation copyWithNewDate(final LocalDate newDate) {
-        return new FiscalDateImplementation(fiscalYearStartMonth, monthComparatorForFiscalYearCalculation, newDate);
+        return new FiscalDateImplementation(fiscalYearStartMonth, fiscalYearCalculator, newDate);
     }
 
     @Override

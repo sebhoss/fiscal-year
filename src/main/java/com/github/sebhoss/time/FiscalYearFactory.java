@@ -7,8 +7,6 @@
  */
 package com.github.sebhoss.time;
 
-import java.util.Comparator;
-
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 
@@ -18,12 +16,12 @@ import org.joda.time.Months;
  */
 public final class FiscalYearFactory {
 
-    private final Months             fiscalYearStartMonth;
-    private final Comparator<Months> monthComparator;
+    private final Months               fiscalYearStartMonth;
+    private final FiscalYearCalculator fiscalYearCalculator;
 
-    FiscalYearFactory(final Months fiscalYearStartMonth, final Comparator<Months> monthComparator) {
+    FiscalYearFactory(final Months fiscalYearStartMonth, final FiscalYearCalculator fiscalYearCalculator) {
         this.fiscalYearStartMonth = fiscalYearStartMonth;
-        this.monthComparator = monthComparator;
+        this.fiscalYearCalculator = fiscalYearCalculator;
     }
 
     /**
@@ -32,7 +30,7 @@ public final class FiscalYearFactory {
      * @return The corresponding date in a fiscal year.
      */
     public FiscalDate create(final LocalDate calendarDate) {
-        return new FiscalDateImplementation(fiscalYearStartMonth, monthComparator, calendarDate);
+        return new FiscalDateImplementation(fiscalYearStartMonth, fiscalYearCalculator, calendarDate);
     }
 
 }
