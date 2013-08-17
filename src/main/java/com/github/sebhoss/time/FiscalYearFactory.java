@@ -8,7 +8,6 @@
 package com.github.sebhoss.time;
 
 import org.joda.time.LocalDate;
-import org.joda.time.Months;
 
 /**
  * Creates {@link FiscalDate fiscal dates} from {@link LocalDate local dates}. Thus converts between calendar years to
@@ -16,12 +15,19 @@ import org.joda.time.Months;
  */
 public final class FiscalYearFactory {
 
-    private final Months               fiscalYearStartMonth;
-    private final FiscalYearCalculator fiscalYearCalculator;
+    private final FiscalYearCalculator       fiscalYearCalculator;
+    private final FiscalMonthCalculator      fiscalMonthCalculator;
+    private final FiscalDayOfYearCalculator  fiscalDayOfYearCalculator;
+    private final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator;
 
-    FiscalYearFactory(final Months fiscalYearStartMonth, final FiscalYearCalculator fiscalYearCalculator) {
-        this.fiscalYearStartMonth = fiscalYearStartMonth;
+    FiscalYearFactory(final FiscalYearCalculator fiscalYearCalculator,
+            final FiscalMonthCalculator fiscalMonthCalculator,
+            final FiscalDayOfYearCalculator fiscalDayOfYearCalculator,
+            final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator) {
         this.fiscalYearCalculator = fiscalYearCalculator;
+        this.fiscalMonthCalculator = fiscalMonthCalculator;
+        this.fiscalDayOfYearCalculator = fiscalDayOfYearCalculator;
+        this.fiscalWeekOfYearCalculator = fiscalWeekOfYearCalculator;
     }
 
     /**
@@ -30,7 +36,8 @@ public final class FiscalYearFactory {
      * @return The corresponding date in a fiscal year.
      */
     public FiscalDate create(final LocalDate calendarDate) {
-        return new FiscalDateImplementation(fiscalYearStartMonth, fiscalYearCalculator, calendarDate);
+        return new FiscalDateImplementation(fiscalYearCalculator, fiscalMonthCalculator, fiscalDayOfYearCalculator,
+                fiscalWeekOfYearCalculator, calendarDate);
     }
 
 }

@@ -9,8 +9,6 @@ package com.github.sebhoss.time;
 
 import org.joda.time.Months;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
-
 /**
  * TODO: document
  */
@@ -21,9 +19,8 @@ public final class FiscalYears {
      *            The calendar month in the previous calendar year where the fiscal year begins.
      * @return A new factory which creates appropriate {@link FiscalDate}s.
      */
-    @SuppressWarnings(CompilerWarnings.NULL)
-    public static FiscalYearFactory earlyFiscalYear(final int startMonth) {
-        return new FiscalYearFactory(Months.months(startMonth), new EarlyFiscalYearCalculator(startMonth));
+    public static FiscalYearFactory earlyFiscalYear(final Months startMonth) {
+        return earlyFiscalYear(startMonth.getMonths());
     }
 
     /**
@@ -31,18 +28,10 @@ public final class FiscalYears {
      *            The calendar month in the previous calendar year where the fiscal year begins.
      * @return A new factory which creates appropriate {@link FiscalDate}s.
      */
-    public static FiscalYearFactory earlyFiscalYear(final Months startMonth) {
-        return new FiscalYearFactory(startMonth, new EarlyFiscalYearCalculator(startMonth.getMonths()));
-    }
-
-    /**
-     * @param startMonth
-     *            The calendar month in the current calendar year where the fiscal year begins.
-     * @return A new factory which creates appropriate {@link FiscalDate}s.
-     */
-    @SuppressWarnings(CompilerWarnings.NULL)
-    public static FiscalYearFactory lateFiscalYear(final int startMonth) {
-        return new FiscalYearFactory(Months.months(startMonth), new LateFiscalYearCalculator(startMonth));
+    public static FiscalYearFactory earlyFiscalYear(final int startMonth) {
+        return new FiscalYearFactory(new EarlyFiscalYearCalculator(startMonth),
+                new FiscalMonthCalculatorImplementation(startMonth), new FiscalDayOfYearCalculatorImplementation(),
+                new FiscalWeekOfYearCalculatorImplementation());
     }
 
     /**
@@ -51,7 +40,18 @@ public final class FiscalYears {
      * @return A new factory which creates appropriate {@link FiscalDate}s.
      */
     public static FiscalYearFactory lateFiscalYear(final Months startMonth) {
-        return new FiscalYearFactory(startMonth, new LateFiscalYearCalculator(startMonth.getMonths()));
+        return lateFiscalYear(startMonth.getMonths());
+    }
+
+    /**
+     * @param startMonth
+     *            The calendar month in the current calendar year where the fiscal year begins.
+     * @return A new factory which creates appropriate {@link FiscalDate}s.
+     */
+    public static FiscalYearFactory lateFiscalYear(final int startMonth) {
+        return new FiscalYearFactory(new LateFiscalYearCalculator(startMonth), new FiscalMonthCalculatorImplementation(
+                startMonth), new FiscalDayOfYearCalculatorImplementation(),
+                new FiscalWeekOfYearCalculatorImplementation());
     }
 
     private FiscalYears() {

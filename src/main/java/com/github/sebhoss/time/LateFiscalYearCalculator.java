@@ -7,6 +7,8 @@
  */
 package com.github.sebhoss.time;
 
+import org.joda.time.LocalDate;
+
 final class LateFiscalYearCalculator implements FiscalYearCalculator {
 
     private final int fiscalYearStartMonth;
@@ -16,12 +18,12 @@ final class LateFiscalYearCalculator implements FiscalYearCalculator {
     }
 
     @Override
-    public int calculateFiscalYear(final int calendarYear, final int calendarMonth) {
-        if (fiscalYearStartMonth <= calendarMonth) {
-            return calendarYear;
+    public int calculateFiscalYear(final LocalDate calendarDate) {
+        if (fiscalYearStartMonth <= calendarDate.getMonthOfYear()) {
+            return calendarDate.getYear();
         }
 
-        return calendarYear - 1;
+        return calendarDate.getYear() - 1;
     }
 
 }

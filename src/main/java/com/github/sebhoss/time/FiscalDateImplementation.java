@@ -7,73 +7,59 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.Days;
 import org.joda.time.LocalDate;
-import org.joda.time.Months;
-import org.joda.time.Weeks;
 
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 
 final class FiscalDateImplementation implements FiscalDate {
 
-    private final Months               fiscalYearStartMonth;
-    private final FiscalYearCalculator fiscalYearCalculator;
-    private final LocalDate            currentCalendarDate;
+    private final FiscalYearCalculator       fiscalYearCalculator;
+    private final FiscalMonthCalculator      fiscalMonthCalculator;
+    private final FiscalDayOfYearCalculator  fiscalDayOfYearCalculator;
+    private final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator;
+    private final LocalDate                  currentCalendarDate;
 
     /**
-     * @param fiscalYearStartMonth
-     *            The start date of the fiscal year.
-     * @param monthComparatorForFiscalYearCalculation
-     *            The comparator to use for month comparison when asking for the fiscal year.
+     * @param fiscalYearCalculator
+     *            The calculator to calculate the fiscal year.
+     * @param fiscalMonthCalculator
+     *            The calculator to calculate the fiscal month.
+     * @param fiscalDayOfYearCalculator
+     *            The calculator to calculate the fiscal day of year.
+     * @param fiscalWeekOfYearCalculator
+     *            The calculator to calculate the fiscal week of year.
      * @param currentCalendarDate
      *            The current calendar date.
      */
-    FiscalDateImplementation(final Months fiscalYearStartMonth, final FiscalYearCalculator fiscalYearCalculator,
-            final LocalDate currentCalendarDate) {
-        this.fiscalYearStartMonth = fiscalYearStartMonth;
+    public FiscalDateImplementation(final FiscalYearCalculator fiscalYearCalculator,
+            final FiscalMonthCalculator fiscalMonthCalculator,
+            final FiscalDayOfYearCalculator fiscalDayOfYearCalculator,
+            final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator, final LocalDate currentCalendarDate) {
         this.fiscalYearCalculator = fiscalYearCalculator;
+        this.fiscalMonthCalculator = fiscalMonthCalculator;
+        this.fiscalDayOfYearCalculator = fiscalDayOfYearCalculator;
+        this.fiscalWeekOfYearCalculator = fiscalWeekOfYearCalculator;
         this.currentCalendarDate = currentCalendarDate;
     }
 
     @Override
     public int getFiscalYear() {
-        final int calendarYear = currentCalendarDate.getYear();
-        final int calendarMonth = currentCalendarDate.getMonthOfYear();
-
-        return fiscalYearCalculator.calculateFiscalYear(calendarYear, calendarMonth);
+        return fiscalYearCalculator.calculateFiscalYear(currentCalendarDate);
     }
 
     @Override
     public int getFiscalMonth() {
-        final int calendarMonth = currentCalendarDate.getMonthOfYear();
-        final int fiscalStartMonth = fiscalYearStartMonth.getMonths();
-        int month = 0;
-
-        if (fiscalStartMonth <= calendarMonth) {
-            month = calendarMonth - fiscalStartMonth + 1;
-        } else {
-            final int maximumNumberOfMonths = currentCalendarDate.monthOfYear().getMaximumValue();
-            final int fiscalMonthOffset = maximumNumberOfMonths - fiscalStartMonth + 1;
-            month = calendarMonth + fiscalMonthOffset;
-        }
-
-        return month;
+        return fiscalMonthCalculator.calculateFiscalMonth(currentCalendarDate);
     }
 
     @Override
     public int getFiscalDayOfYear() {
-        final LocalDate fiscalYearStartDate = new LocalDate(getFiscalYear(), fiscalYearStartMonth.getMonths(), 1);
-        final Days daysBetween = Days.daysBetween(fiscalYearStartDate, currentCalendarDate);
-
-        return daysBetween.getDays();
+        return fiscalDayOfYearCalculator.calculateFiscalDayOfYear(currentCalendarDate);
     }
 
     @Override
     public int getFiscalWeekOfYear() {
-        final LocalDate fiscalYearStartDate = new LocalDate(getFiscalYear(), fiscalYearStartMonth.getMonths(), 1);
-        final Weeks weeksBetween = Weeks.weeksBetween(fiscalYearStartDate, currentCalendarDate);
-
-        return weeksBetween.getWeeks();
+        return fiscalWeekOfYearCalculator.calculateFiscalWeekOfYear(currentCalendarDate);
     }
 
     @Override
@@ -150,7 +136,8 @@ final class FiscalDateImplementation implements FiscalDate {
     }
 
     private FiscalDateImplementation copyWithNewDate(final LocalDate newDate) {
-        return new FiscalDateImplementation(fiscalYearStartMonth, fiscalYearCalculator, newDate);
+        return new FiscalDateImplementation(fiscalYearCalculator, fiscalMonthCalculator, fiscalDayOfYearCalculator,
+                fiscalWeekOfYearCalculator, newDate);
     }
 
     @Override

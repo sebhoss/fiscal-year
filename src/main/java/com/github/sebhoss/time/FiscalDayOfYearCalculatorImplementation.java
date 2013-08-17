@@ -9,8 +9,12 @@ package com.github.sebhoss.time;
 
 import org.joda.time.LocalDate;
 
-interface FiscalYearCalculator {
+final class FiscalDayOfYearCalculatorImplementation implements FiscalDayOfYearCalculator {
 
-    int calculateFiscalYear(LocalDate calendarDate);
+    @Override
+    public int calculateFiscalDayOfYear(final LocalDate calendarDate) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
 }
