@@ -19,11 +19,11 @@ import org.junit.runner.RunWith;
 import com.github.sebhoss.common.annotation.CompilerWarnings;
 
 /**
- * Test cases for FiscalYearStartsLate.
+ * Test cases for {@link FiscalDate#getFiscalYear()}.
  */
 @RunWith(Theories.class)
 @SuppressWarnings(CompilerWarnings.STATIC_METHOD)
-public class LateFiscalDateGetYearTest {
+public class FiscalDateGetFiscalYearTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
@@ -36,6 +36,50 @@ public class LateFiscalDateGetYearTest {
     /** @see TestObjects#middleDates() */
     @DataPoints
     public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
+
+    /**
+     * Ensures that for any given date the fiscal year will be increased if the current calendar date is after the
+     * fiscal year start date.
+     * 
+     * @param startDate
+     *            The start date of the fiscal year.
+     * @param currentDate
+     *            The current date in a calendar year.
+     */
+    @Theory
+    public void shouldAddYearWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
+        // Given
+        Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).create(currentDate);
+
+        // When
+        final int fiscalYear = fiscalDate.getFiscalYear();
+
+        // Then
+        Assert.assertEquals(currentDate.getYear() + 1, fiscalYear);
+    }
+
+    /**
+     * Ensures that for any given date the fiscal year will not be increased if the current calendar date is before the
+     * fiscal year start date.
+     * 
+     * @param startDate
+     *            The start date of the fiscal year.
+     * @param currentDate
+     *            The current date in a calendar year.
+     */
+    @Theory
+    public void shouldNotAddYearWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
+        // Given
+        Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).create(currentDate);
+
+        // When
+        final int fiscalYear = fiscalDate.getFiscalYear();
+
+        // Then
+        Assert.assertEquals(currentDate.getYear(), fiscalYear);
+    }
 
     /**
      * Ensures that for any given date the fiscal year will not be increased if the current calendar date is after the
