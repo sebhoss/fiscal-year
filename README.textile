@@ -44,7 +44,7 @@ p. Or finally convert it back to a @LocalDate@:
 
 bc. LocalDate calendarDate = fiscalDate.asLocalDate();
 
-p. All classes are immutable and therefore thread-safe. The library currently relies on "Joda Time":http://joda-time.sourceforge.net/ but will be updated to use the new "JSR 310":http://jcp.org/en/jsr/detail?id=310 based Date API. 
+p. All classes are immutable and therefore thread-safe. The library currently relies on "Joda Time":http://joda-time.sourceforge.net/ but will be updated to use the new "JSR 310":http://jcp.org/en/jsr/detail?id=310 based Date API once it is released. 
 
 h2. Integration
 
