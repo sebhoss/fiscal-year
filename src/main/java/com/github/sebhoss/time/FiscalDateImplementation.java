@@ -13,41 +13,32 @@ import com.github.sebhoss.common.annotation.CompilerWarnings;
 
 final class FiscalDateImplementation implements FiscalDate {
 
-    private final FiscalYearCalculator       fiscalYearCalculator;
-    private final FiscalMonthCalculator      fiscalMonthCalculator;
-    private final FiscalDayOfYearCalculator  fiscalDayOfYearCalculator;
-    private final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator;
-    private final LocalDate                  currentCalendarDate;
+    private final FiscalDateCalculator fiscalDateCalculator;
+    private final LocalDate            currentCalendarDate;
 
-    FiscalDateImplementation(final FiscalYearCalculator fiscalYearCalculator,
-            final FiscalMonthCalculator fiscalMonthCalculator,
-            final FiscalDayOfYearCalculator fiscalDayOfYearCalculator,
-            final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator, final LocalDate currentCalendarDate) {
-        this.fiscalYearCalculator = fiscalYearCalculator;
-        this.fiscalMonthCalculator = fiscalMonthCalculator;
-        this.fiscalDayOfYearCalculator = fiscalDayOfYearCalculator;
-        this.fiscalWeekOfYearCalculator = fiscalWeekOfYearCalculator;
+    FiscalDateImplementation(final FiscalDateCalculator fiscalDateCalculator, final LocalDate currentCalendarDate) {
+        this.fiscalDateCalculator = fiscalDateCalculator;
         this.currentCalendarDate = currentCalendarDate;
     }
 
     @Override
     public int getFiscalYear() {
-        return fiscalYearCalculator.calculateFiscalYear(currentCalendarDate);
+        return fiscalDateCalculator.calculateFiscalYear(currentCalendarDate);
     }
 
     @Override
     public int getFiscalMonth() {
-        return fiscalMonthCalculator.calculateFiscalMonth(currentCalendarDate);
+        return fiscalDateCalculator.calculateFiscalMonth(currentCalendarDate);
     }
 
     @Override
     public int getFiscalDayOfYear() {
-        return fiscalDayOfYearCalculator.calculateFiscalDayOfYear(currentCalendarDate);
+        return fiscalDateCalculator.calculateFiscalDayOfYear(currentCalendarDate);
     }
 
     @Override
     public int getFiscalWeekOfYear() {
-        return fiscalWeekOfYearCalculator.calculateFiscalWeekOfYear(currentCalendarDate);
+        return fiscalDateCalculator.calculateFiscalWeekOfYear(currentCalendarDate);
     }
 
     @Override
@@ -124,8 +115,7 @@ final class FiscalDateImplementation implements FiscalDate {
     }
 
     private FiscalDateImplementation copyWithNewDate(final LocalDate newDate) {
-        return new FiscalDateImplementation(fiscalYearCalculator, fiscalMonthCalculator, fiscalDayOfYearCalculator,
-                fiscalWeekOfYearCalculator, newDate);
+        return new FiscalDateImplementation(fiscalDateCalculator, newDate);
     }
 
     @Override

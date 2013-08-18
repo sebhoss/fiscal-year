@@ -15,19 +15,10 @@ import org.joda.time.LocalDate;
  */
 public final class FiscalYearFactory {
 
-    private final FiscalYearCalculator       fiscalYearCalculator;
-    private final FiscalMonthCalculator      fiscalMonthCalculator;
-    private final FiscalDayOfYearCalculator  fiscalDayOfYearCalculator;
-    private final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator;
+    private final FiscalDateCalculator fiscalDateCalculator;
 
-    FiscalYearFactory(final FiscalYearCalculator fiscalYearCalculator,
-            final FiscalMonthCalculator fiscalMonthCalculator,
-            final FiscalDayOfYearCalculator fiscalDayOfYearCalculator,
-            final FiscalWeekOfYearCalculator fiscalWeekOfYearCalculator) {
-        this.fiscalYearCalculator = fiscalYearCalculator;
-        this.fiscalMonthCalculator = fiscalMonthCalculator;
-        this.fiscalDayOfYearCalculator = fiscalDayOfYearCalculator;
-        this.fiscalWeekOfYearCalculator = fiscalWeekOfYearCalculator;
+    FiscalYearFactory(final FiscalDateCalculator fiscalDateCalculator) {
+        this.fiscalDateCalculator = fiscalDateCalculator;
     }
 
     /**
@@ -36,8 +27,7 @@ public final class FiscalYearFactory {
      * @return The corresponding date in a fiscal year.
      */
     public FiscalDate create(final LocalDate calendarDate) {
-        return new FiscalDateImplementation(fiscalYearCalculator, fiscalMonthCalculator, fiscalDayOfYearCalculator,
-                fiscalWeekOfYearCalculator, calendarDate);
+        return new FiscalDateImplementation(fiscalDateCalculator, calendarDate);
     }
 
 }
