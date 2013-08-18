@@ -50,7 +50,7 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldAddYearWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -72,7 +72,7 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldNotAddYearWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -94,7 +94,7 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldNotAddYearWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -116,7 +116,7 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldSubtractYearWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();

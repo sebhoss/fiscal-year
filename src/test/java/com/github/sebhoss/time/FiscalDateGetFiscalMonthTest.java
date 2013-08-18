@@ -51,7 +51,7 @@ public class FiscalDateGetFiscalMonthTest {
             final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
         final int fiscalMonth = fiscalDate.getFiscalMonth();
@@ -74,7 +74,7 @@ public class FiscalDateGetFiscalMonthTest {
             final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).createFromCalendarDate(currentDate);
         final int fiscalMonthOffset = currentDate.monthOfYear().getMaximumValue() - startDate.getMonths() + 1;
 
         // When
@@ -98,7 +98,7 @@ public class FiscalDateGetFiscalMonthTest {
             final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
         final int fiscalMonth = fiscalDate.getFiscalMonth();
@@ -121,7 +121,7 @@ public class FiscalDateGetFiscalMonthTest {
             final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).createFromCalendarDate(currentDate);
         final int fiscalMonthOffset = currentDate.monthOfYear().getMaximumValue() - startDate.getMonths() + 1;
 
         // When

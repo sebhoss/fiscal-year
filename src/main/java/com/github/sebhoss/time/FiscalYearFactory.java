@@ -26,7 +26,22 @@ public final class FiscalYearFactory {
      *            The date in a calendar year.
      * @return The corresponding date in a fiscal year.
      */
-    public FiscalDate create(final LocalDate calendarDate) {
+    public FiscalDate createFromCalendarDate(final LocalDate calendarDate) {
+        return new FiscalDateImplementation(fiscalDateCalculator, calendarDate);
+    }
+
+    /**
+     * @param fiscalYear
+     *            The fiscal year.
+     * @param fiscalMonth
+     *            The fiscal month.
+     * @param fiscalDay
+     *            The fiscal day.
+     * @return A new FiscalDate representing the given parameters.
+     */
+    public FiscalDate create(final int fiscalYear, final int fiscalMonth, final int fiscalDay) {
+        final LocalDate calendarDate = fiscalDateCalculator.calculateCalendarDate(fiscalYear, fiscalMonth, fiscalDay);
+
         return new FiscalDateImplementation(fiscalDateCalculator, calendarDate);
     }
 

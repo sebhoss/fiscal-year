@@ -60,7 +60,7 @@ public class FiscalDatePlusYearsTest {
     public void shouldAddYearsInEarlyFiscalYear(final Months startDate, final LocalDate currentDate,
             final int additionalYears) {
         // Given
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
 
         // When
         final FiscalDate newDate = fiscalDate.plusYears(additionalYears);
@@ -83,7 +83,7 @@ public class FiscalDatePlusYearsTest {
     public void shouldAddYearsInLateFiscalYear(final Months startDate, final LocalDate currentDate,
             final int additionalYears) {
         // Given
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
 
         // When
         final FiscalDate newDate = fiscalDate.plusYears(additionalYears);

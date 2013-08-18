@@ -10,7 +10,7 @@ package com.github.sebhoss.time;
 import org.joda.time.LocalDate;
 
 /**
- * TODO: Write documentation
+ * Performs calculations between fiscal- and calendar-years based dates.
  */
 public interface FiscalDateCalculator {
 
@@ -41,5 +41,16 @@ public interface FiscalDateCalculator {
      * @return The fiscal day-of-year of the given calendar date.
      */
     int calculateFiscalDayOfYear(LocalDate calendarDate);
+
+    /**
+     * @param fiscalYear
+     *            The fiscal year.
+     * @param fiscalMonth
+     *            The fiscal month.
+     * @param fiscalDay
+     *            The fiscal day.
+     * @return The corresponding calendar date.
+     */
+    LocalDate calculateCalendarDate(int fiscalYear, int fiscalMonth, int fiscalDay);
 
 }

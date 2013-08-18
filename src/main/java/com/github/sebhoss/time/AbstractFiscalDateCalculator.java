@@ -14,7 +14,7 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
     protected final int fiscalYearStartMonth;
 
     AbstractFiscalDateCalculator(final int fiscalStartMonth) {
-        this.fiscalYearStartMonth = fiscalStartMonth;
+        fiscalYearStartMonth = fiscalStartMonth;
     }
 
     @Override
@@ -39,6 +39,11 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
     public final int calculateFiscalDayOfYear(final LocalDate calendarDate) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public LocalDate calculateCalendarDate(final int fiscalYear, final int fiscalMonth, final int fiscalDay) {
+        return new LocalDate();
     }
 
 }

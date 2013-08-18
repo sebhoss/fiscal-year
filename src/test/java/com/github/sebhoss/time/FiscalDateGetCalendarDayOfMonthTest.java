@@ -47,7 +47,7 @@ public class FiscalDateGetCalendarDayOfMonthTest {
     @Theory
     public void shouldReturnCalendarDayOfMonthInEarlyFiscalYear(final Months startDate, final LocalDate currentDate) {
         // Given
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
         final int calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
@@ -67,7 +67,7 @@ public class FiscalDateGetCalendarDayOfMonthTest {
     @Theory
     public void shouldReturnCalendarDayOfMonthInLateFiscalYear(final Months startDate, final LocalDate currentDate) {
         // Given
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).create(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
         final int calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
