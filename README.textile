@@ -14,7 +14,11 @@ FiscalYearFactory lateYearFactory = FiscalYears.lateFiscalYear(3);
 p. Then use this factory to convert a calendar-year based @LocalDate@ to a corresponding @FiscalDate@:
 
 bc. LocalDate calendarDate = LocalDate.now();
-FiscalDate fiscalDate = factory.create(calendarDate);
+FiscalDate fiscalDate = factory.createFromCalendarDate(calendarDate);
+
+p. Use fiscal-year based values directly to create an instance of @FiscalDate@:
+
+bc. FiscalDate fiscalDate = factory.create(2015, 3, 25);
 
 p. Query the newly created @FiscalDate@ to retrieve the usual suspects of attributes:
 
