@@ -37,7 +37,7 @@ final class FiscalDateImplementation implements FiscalDate {
     }
 
     @Override
-    public int getFiscalWeekOfYear() {
+    public int getFiscalWeekOfWeekyear() {
         return fiscalDateCalculator.calculateFiscalWeekOfYear(currentCalendarDate);
     }
 

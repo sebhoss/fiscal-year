@@ -22,7 +22,7 @@ import com.github.sebhoss.common.annotation.CompilerWarnings;
  */
 @RunWith(Theories.class)
 @SuppressWarnings(CompilerWarnings.STATIC_METHOD)
-public class FiscalDateGetCalendarWeekOfWeekyear {
+public class FiscalDateGetCalendarWeekOfWeekyearTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints

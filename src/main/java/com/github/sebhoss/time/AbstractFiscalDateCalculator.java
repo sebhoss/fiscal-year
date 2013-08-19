@@ -7,7 +7,9 @@
  */
 package com.github.sebhoss.time;
 
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.joda.time.Weeks;
 
 abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
 
@@ -31,14 +33,24 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
 
     @Override
     public final int calculateFiscalWeekOfYear(final LocalDate calendarDate) {
-        // TODO Auto-generated method stub
-        return 0;
+        final LocalDate fiscalYearStartDate = createMatchingFiscalYearStartDate(calendarDate);
+
+        return Weeks.weeksBetween(fiscalYearStartDate, calendarDate).getWeeks() + 1;
     }
 
     @Override
     public final int calculateFiscalDayOfYear(final LocalDate calendarDate) {
-        // TODO Auto-generated method stub
-        return 0;
+        final LocalDate fiscalYearStartDate = createMatchingFiscalYearStartDate(calendarDate);
+
+        return Days.daysBetween(fiscalYearStartDate, calendarDate).getDays() + 1;
+    }
+
+    private LocalDate createMatchingFiscalYearStartDate(final LocalDate calendarDate) {
+        if (fiscalYearStartMonth <= calendarDate.getMonthOfYear()) {
+            return new LocalDate(calendarDate.getYear(), fiscalYearStartMonth, 1);
+        }
+
+        return new LocalDate(calendarDate.getYear() - 1, fiscalYearStartMonth, 1);
     }
 
     @Override

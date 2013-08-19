@@ -32,7 +32,7 @@ public interface FiscalDate {
     /**
      * @return The current week in the current fiscal year.
      */
-    int getFiscalWeekOfYear();
+    int getFiscalWeekOfWeekyear();
 
     /**
      * @return The current fiscal year as calendar year.
