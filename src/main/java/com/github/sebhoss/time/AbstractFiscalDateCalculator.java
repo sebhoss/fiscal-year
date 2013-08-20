@@ -55,7 +55,16 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
 
     @Override
     public LocalDate calculateCalendarDate(final int fiscalYear, final int fiscalMonth, final int fiscalDay) {
-        return new LocalDate();
+        final int calendarYear = calculateCalendarYear(fiscalYear, fiscalMonth);
+        final int calendarMonth = calculateCalendarMonth(fiscalMonth);
+
+        return new LocalDate(calendarYear, calendarMonth, fiscalDay);
     }
+
+    private final int calculateCalendarMonth(final int fiscalMonth) {
+        return (fiscalMonth + fiscalYearStartMonth - 1) % 12;
+    }
+
+    protected abstract int calculateCalendarYear(int fiscalYear, int fiscalMonth);
 
 }

@@ -9,9 +9,6 @@ package com.github.sebhoss.time;
 
 import org.joda.time.LocalDate;
 
-/**
- * TODO: Write documentation
- */
 final class EarlyFiscalDateCalculator extends AbstractFiscalDateCalculator {
 
     EarlyFiscalDateCalculator(final int fiscalStartMonth) {
@@ -25,6 +22,15 @@ final class EarlyFiscalDateCalculator extends AbstractFiscalDateCalculator {
         }
 
         return calendarDate.getYear();
+    }
+
+    @Override
+    protected int calculateCalendarYear(final int fiscalYear, final int fiscalMonth) {
+        if (fiscalMonth <= 12 - fiscalYearStartMonth + 1) {
+            return fiscalYear - 1;
+        }
+
+        return fiscalYear;
     }
 
 }
