@@ -42,7 +42,7 @@ public class FiscalDateGetFiscalWeekOfWeekyearTest {
     public void shouldReturnLastWeekAtEndOfFiscalYear() {
         // given
         final FiscalYearFactory fiscalYearFactory = FiscalYears.earlyFiscalYear(11);
-        final FiscalDate fiscalDate = fiscalYearFactory.createFromCalendarDate(new LocalDate(2015, 10, 31));
+        final FiscalDate fiscalDate = fiscalYearFactory.createFromCalendarDate(new LocalDate(2015, 10, 30));
 
         // when
         final int weekOfWeekyear = fiscalDate.getFiscalWeekOfWeekyear();
