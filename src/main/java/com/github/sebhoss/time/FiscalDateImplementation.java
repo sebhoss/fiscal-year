@@ -6,9 +6,11 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.LocalDate;
+import javax.annotation.Nullable;
 
-import com.github.sebhoss.common.annotation.CompilerWarnings;
+import com.github.sebhoss.common.annotation.Nullsafe;
+
+import org.joda.time.LocalDate;
 
 final class FiscalDateImplementation implements FiscalDate {
 
@@ -66,55 +68,47 @@ final class FiscalDateImplementation implements FiscalDate {
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusYears(final int years) {
         return copyWithNewDate(currentCalendarDate.plusYears(years));
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusMonths(final int months) {
         return copyWithNewDate(currentCalendarDate.plusMonths(months));
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusWeeks(final int weeks) {
         return copyWithNewDate(currentCalendarDate.plusWeeks(weeks));
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate plusDays(final int days) {
         return copyWithNewDate(currentCalendarDate.plusDays(days));
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusYears(final int years) {
         return copyWithNewDate(currentCalendarDate.minusYears(years));
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusMonths(final int months) {
         return copyWithNewDate(currentCalendarDate.minusMonths(months));
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusWeeks(final int weeks) {
         return copyWithNewDate(currentCalendarDate.minusWeeks(weeks));
     }
 
     @Override
-    @SuppressWarnings(CompilerWarnings.NULL)
     public FiscalDate minusDays(final int days) {
         return copyWithNewDate(currentCalendarDate.minusDays(days));
     }
 
-    private FiscalDateImplementation copyWithNewDate(final LocalDate newDate) {
-        return new FiscalDateImplementation(fiscalDateCalculator, newDate);
+    private FiscalDateImplementation copyWithNewDate(final @Nullable LocalDate newDate) {
+        return new FiscalDateImplementation(fiscalDateCalculator, Nullsafe.nullsafe(newDate));
     }
 
     @Override
