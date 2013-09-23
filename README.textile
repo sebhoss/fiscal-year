@@ -22,27 +22,27 @@ bc. FiscalDate fiscalDate = factory.create(2015, 3, 25);
 
 p. Query the newly created @FiscalDate@ to retrieve the usual suspects of attributes:
 
-bc.. fiscalDate.getFiscalYear();
-fiscalDate.getFiscalMonth();
-fiscalDate.getFiscalDayOfYear();
-fiscalDate.getFiscalWeekOfYear();
+bc.. int fiscalYear = fiscalDate.getFiscalYear();
+int fiscalMonth = fiscalDate.getFiscalMonth();
+int fiscalDayOfYear = fiscalDate.getFiscalDayOfYear();
+int fiscalWeekOfYear = fiscalDate.getFiscalWeekOfYear();
 
-fiscalDate.getCalendarYear();
-fiscalDate.getCalendarMonth();
-fiscalDate.getCalendarDayOfMonth();
-fiscalDate.getCalendarDayOfYear();
-fiscalDate.getCalendarWeekOfWeekyear();
+int calendarYear = fiscalDate.getCalendarYear();
+int calendarMonth = fiscalDate.getCalendarMonth();
+int calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
+int calendarDayOfYear = fiscalDate.getCalendarDayOfYear();
+int calendarWeekOfWeekyear = fiscalDate.getCalendarWeekOfWeekyear();
 
 p. Do some math with dates as follows:
 
-bc. fiscalDate.plusYears(years);
-fiscalDate.plusMonths(months);
-fiscalDate.plusWeeks(int weeks);
-fiscalDate.plusDays(int days);
-fiscalDate.minusYears(int years);
-fiscalDate.minusMonths(int months);
-fiscalDate.minusWeeks(int weeks);
-fiscalDate.minusDays(int days);
+bc. FiscalDate newDate = fiscalDate.plusYears(int years);
+FiscalDate newDate = fiscalDate.plusMonths(int months);
+FiscalDate newDate = fiscalDate.plusWeeks(int weeks);
+FiscalDate newDate = fiscalDate.plusDays(int days);
+FiscalDate newDate = fiscalDate.minusYears(int years);
+FiscalDate newDate = fiscalDate.minusMonths(int months);
+FiscalDate newDate = fiscalDate.minusWeeks(int weeks);
+FiscalDate newDate = fiscalDate.minusDays(int days);
     
 p. Or finally convert it back to a @LocalDate@:
 
