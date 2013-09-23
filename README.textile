@@ -25,7 +25,7 @@ p. Query the newly created @FiscalDate@ to retrieve the usual suspects of attrib
 bc.. int fiscalYear = fiscalDate.getFiscalYear();
 int fiscalMonth = fiscalDate.getFiscalMonth();
 int fiscalDayOfYear = fiscalDate.getFiscalDayOfYear();
-int fiscalWeekOfYear = fiscalDate.getFiscalWeekOfYear();
+int fiscalWeekOfWeekyear = fiscalDate.getFiscalWeekOfWeekyear();
 
 int calendarYear = fiscalDate.getCalendarYear();
 int calendarMonth = fiscalDate.getCalendarMonth();
