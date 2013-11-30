@@ -33,23 +33,23 @@ public class FiscalDatePlusYearsTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static Months[]    START_DATES        = TestObjects.supportedMonths();
+    public static final Months[]    START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
-    public static LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
+    public static final LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
 
     /** @see TestObjects#middleDates() */
     @DataPoints
-    public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
+    public static final LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
 
     /** The amount of years to add a given date */
     @DataPoints
-    public static int[]       ADDITIONAL_YEARS   = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 5000 };
+    public static final int[]       ADDITIONAL_YEARS   = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 5000 };
 
     /** The amount of random years to add a given date */
     @DataPoints
-    public static int[]       RANDOM_YEARS       = Datasets.ints().lowestInclusive(-292275054)
+    public static final int[]       RANDOM_YEARS       = Datasets.ints().lowestInclusive(-292275054)
                                                          .highestInclusive(292278993).build();
 
     /**

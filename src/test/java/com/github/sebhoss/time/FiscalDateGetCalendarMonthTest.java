@@ -32,15 +32,15 @@ public class FiscalDateGetCalendarMonthTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static Months[]    START_DATES        = TestObjects.supportedMonths();
+    public static final Months[]    START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
-    public static LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
+    public static final LocalDate[] MONTH_START_DATES  = TestObjects.startDates();
 
     /** @see TestObjects#middleDates() */
     @DataPoints
-    public static LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
+    public static final LocalDate[] MONTH_MIDDLE_DATES = TestObjects.middleDates();
 
     /**
      * Ensures that for any given date the correct calendar month will be returned in an early fiscal year.
