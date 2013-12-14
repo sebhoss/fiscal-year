@@ -14,7 +14,7 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
 
     protected final int fiscalYearStartMonth;
 
-    AbstractFiscalDateCalculator(final int fiscalStartMonth) {
+    protected AbstractFiscalDateCalculator(final int fiscalStartMonth) {
         fiscalYearStartMonth = fiscalStartMonth;
     }
 
