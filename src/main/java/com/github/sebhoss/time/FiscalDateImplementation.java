@@ -8,7 +8,7 @@ package com.github.sebhoss.time;
 
 import javax.annotation.Nullable;
 
-import com.github.sebhoss.common.annotation.Nullsafe;
+import com.github.sebhoss.nullanalysis.Nullsafe;
 
 import org.joda.time.LocalDate;
 

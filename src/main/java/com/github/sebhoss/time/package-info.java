@@ -7,6 +7,6 @@
 /**
  * Time related classes.
  */
-@com.github.sebhoss.common.annotation.NotNullByDefault
+@com.github.sebhoss.nullanalysis.NotNullByDefault
 package com.github.sebhoss.time;
 
