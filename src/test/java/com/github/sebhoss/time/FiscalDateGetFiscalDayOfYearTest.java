@@ -13,11 +13,11 @@
  */
 package com.github.sebhoss.time;
 
+import com.github.sebhoss.warnings.CompilerWarnings;
+
 import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.github.sebhoss.common.annotation.CompilerWarnings;
 
 /**
  * Test cases for {@link FiscalDate#getFiscalDayOfYear()}.

@@ -13,6 +13,9 @@
  */
 package com.github.sebhoss.time;
 
+import com.github.sebhoss.datasets.Datasets;
+import com.github.sebhoss.warnings.CompilerWarnings;
+
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.junit.Assert;
@@ -20,9 +23,6 @@ import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
-
-import com.github.sebhoss.common.annotation.CompilerWarnings;
-import com.github.sebhoss.datasets.Datasets;
 
 /**
  * Test cases for {@link FiscalDate#plusYears(int)}.
@@ -50,7 +50,7 @@ public class FiscalDatePlusYearsTest {
     /** The amount of random years to add a given date */
     @DataPoints
     public static final int[]       RANDOM_YEARS       = Datasets.ints().lowestInclusive(-292275054)
-                                                         .highestInclusive(292278993).build();
+                                                               .highestInclusive(292278993).build();
 
     /**
      * Ensures that for any given date a number of years can be added in an early fiscal year.
@@ -66,7 +66,8 @@ public class FiscalDatePlusYearsTest {
     public void shouldAddYearsInEarlyFiscalYear(final Months startDate, final LocalDate currentDate,
             final int additionalYears) {
         // Given
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(
+                currentDate);
 
         // When
         final FiscalDate newDate = fiscalDate.plusYears(additionalYears);
@@ -89,7 +90,8 @@ public class FiscalDatePlusYearsTest {
     public void shouldAddYearsInLateFiscalYear(final Months startDate, final LocalDate currentDate,
             final int additionalYears) {
         // Given
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(
+                currentDate);
 
         // When
         final FiscalDate newDate = fiscalDate.plusYears(additionalYears);

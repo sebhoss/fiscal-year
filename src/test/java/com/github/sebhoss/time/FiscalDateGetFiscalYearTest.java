@@ -13,6 +13,8 @@
  */
 package com.github.sebhoss.time;
 
+import com.github.sebhoss.warnings.CompilerWarnings;
+
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.junit.Assert;
@@ -21,8 +23,6 @@ import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
-
-import com.github.sebhoss.common.annotation.CompilerWarnings;
 
 /**
  * Test cases for {@link FiscalDate#getFiscalYear()}.
@@ -56,7 +56,8 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldAddYearWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(
+                currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -78,7 +79,8 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldNotAddYearWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate.getMonths()).createFromCalendarDate(
+                currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -100,7 +102,8 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldNotAddYearWhenCurrentDateIsAfterStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(
+                currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
@@ -122,7 +125,8 @@ public class FiscalDateGetFiscalYearTest {
     public void shouldSubtractYearWhenCurrentDateIsBeforeStartDate(final Months startDate, final LocalDate currentDate) {
         // Given
         Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
-        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(currentDate);
+        final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate.getMonths()).createFromCalendarDate(
+                currentDate);
 
         // When
         final int fiscalYear = fiscalDate.getFiscalYear();
