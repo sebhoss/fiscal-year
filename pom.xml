@@ -41,6 +41,13 @@
   </scm>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                PROPERTIES                               -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <properties>
+    <version.bom>2.0.6-SNAPSHOT</version.bom>
+  </properties>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               DEPENDENCIES                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <dependencyManagement>
@@ -48,21 +55,21 @@
       <dependency>
         <groupId>com.github.sebhoss</groupId>
         <artifactId>java-bom</artifactId>
-        <version>2.0.6-SNAPSHOT</version>
+        <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.github.sebhoss</groupId>
         <artifactId>testing-bom</artifactId>
-        <version>2.0.6-SNAPSHOT</version>
+        <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.github.sebhoss</groupId>
         <artifactId>sebhoss-bom</artifactId>
-        <version>2.0.6-SNAPSHOT</version>
+        <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
