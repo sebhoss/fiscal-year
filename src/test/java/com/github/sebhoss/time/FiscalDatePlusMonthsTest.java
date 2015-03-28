@@ -79,7 +79,7 @@ public class FiscalDatePlusMonthsTest {
         Assert.assertEquals(
                 additionalMonths,
                 Period.between(FiscalDatePlusMonthsTest.toLocalDate(fiscalDate),
-                        FiscalDatePlusMonthsTest.toLocalDate(newDate)).getMonths());
+                        FiscalDatePlusMonthsTest.toLocalDate(newDate)).toTotalMonths());
     }
 
     /**
@@ -106,7 +106,7 @@ public class FiscalDatePlusMonthsTest {
         Assert.assertEquals(
                 additionalMonths,
                 Period.between(FiscalDatePlusMonthsTest.toLocalDate(fiscalDate),
-                        FiscalDatePlusMonthsTest.toLocalDate(newDate)).getMonths());
+                        FiscalDatePlusMonthsTest.toLocalDate(newDate)).toTotalMonths());
     }
 
     private static LocalDate toLocalDate(final FiscalDate fiscalDate) {
