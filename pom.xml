@@ -16,7 +16,7 @@
   <parent>
     <groupId>com.github.sebhoss</groupId>
     <artifactId>java-parent</artifactId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>1.0.11</version>
   </parent>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -44,7 +44,7 @@
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
-    <version.bom>2.0.6</version.bom>
+    <version.bom>3.0.4</version.bom>
   </properties>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -53,21 +53,21 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.github.sebhoss</groupId>
+        <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>java-bom</artifactId>
         <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.github.sebhoss</groupId>
+        <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>testing-bom</artifactId>
         <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.github.sebhoss</groupId>
+        <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>sebhoss-bom</artifactId>
         <version>${version.bom}</version>
         <type>pom</type>
@@ -76,10 +76,6 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-    </dependency>
     <dependency>
       <groupId>com.github.sebhoss</groupId>
       <artifactId>null-analysis</artifactId>
@@ -95,11 +91,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.sebhoss</groupId>
-      <artifactId>datasets</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
