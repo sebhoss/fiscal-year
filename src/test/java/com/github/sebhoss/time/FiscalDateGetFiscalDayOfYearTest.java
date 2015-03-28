@@ -13,9 +13,10 @@
  */
 package com.github.sebhoss.time;
 
+import java.time.LocalDate;
+
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,10 +33,10 @@ public class FiscalDateGetFiscalDayOfYearTest {
     public void shouldReturnFirstDayAtStartOfFiscalYear() {
         // given
         final FiscalYearFactory fiscalYearFactory = FiscalYears.earlyFiscalYear(11);
-        final FiscalDate fiscalDate = fiscalYearFactory.createFromCalendarDate(new LocalDate(2015, 11, 1));
+        final FiscalDate fiscalDate = fiscalYearFactory.createFromCalendarDate(LocalDate.of(2015, 11, 1));
 
         // when
-        final int dayOfYear = fiscalDate.getFiscalDayOfYear();
+        final long dayOfYear = fiscalDate.getFiscalDayOfYear();
 
         // then
         Assert.assertEquals(1, dayOfYear);
@@ -48,10 +49,10 @@ public class FiscalDateGetFiscalDayOfYearTest {
     public void shouldReturnLastDayAtStartOfFiscalYear() {
         // given
         final FiscalYearFactory fiscalYearFactory = FiscalYears.earlyFiscalYear(11);
-        final FiscalDate fiscalDate = fiscalYearFactory.createFromCalendarDate(new LocalDate(2015, 10, 31));
+        final FiscalDate fiscalDate = fiscalYearFactory.createFromCalendarDate(LocalDate.of(2015, 10, 31));
 
         // when
-        final int dayOfYear = fiscalDate.getFiscalDayOfYear();
+        final long dayOfYear = fiscalDate.getFiscalDayOfYear();
 
         // then
         Assert.assertEquals(365, dayOfYear);

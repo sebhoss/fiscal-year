@@ -13,10 +13,11 @@
  */
 package com.github.sebhoss.time;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.joda.time.LocalDate;
-import org.joda.time.Months;
 import org.junit.Assert;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -32,7 +33,7 @@ public class FiscalDateGetCalendarYearTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static final Months[]    START_DATES        = TestObjects.supportedMonths();
+    public static final Month[]     START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
@@ -44,19 +45,19 @@ public class FiscalDateGetCalendarYearTest {
 
     /**
      * Ensures that for any given date the correct calendar year will be returned in an early fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldReturnCalendarYearInEarlyFiscalYear(final Months startDate, final LocalDate currentDate) {
+    public void shouldReturnCalendarYearInEarlyFiscalYear(final Month startDate, final LocalDate currentDate) {
         // Given
         final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
-        final int calendarYear = fiscalDate.getCalendarYear();
+        final long calendarYear = fiscalDate.getCalendarYear();
 
         // Then
         Assert.assertEquals(currentDate.getYear(), calendarYear);
@@ -64,19 +65,19 @@ public class FiscalDateGetCalendarYearTest {
 
     /**
      * Ensures that for any given date the correct calendar year will be returned in a late fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldReturnCalendarYearInLateFiscalYear(final Months startDate, final LocalDate currentDate) {
+    public void shouldReturnCalendarYearInLateFiscalYear(final Month startDate, final LocalDate currentDate) {
         // Given
         final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
-        final int calendarYear = fiscalDate.getCalendarYear();
+        final long calendarYear = fiscalDate.getCalendarYear();
 
         // Then
         Assert.assertEquals(currentDate.getYear(), calendarYear);

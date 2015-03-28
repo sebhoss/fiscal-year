@@ -13,8 +13,8 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.LocalDate;
-import org.joda.time.Months;
+import java.time.LocalDate;
+import java.time.Month;
 
 /**
  * Collection of common test objects.
@@ -24,9 +24,8 @@ public final class TestObjects {
     /**
      * @return An array of all supported months.
      */
-    public static Months[] supportedMonths() {
-        return new Months[] { Months.TWO, Months.THREE, Months.FOUR, Months.FIVE, Months.SIX, Months.SEVEN,
-                Months.EIGHT, Months.NINE, Months.TEN, Months.ELEVEN, Months.TWELVE };
+    public static Month[] supportedMonths() {
+        return Month.values();
     }
 
     /**
@@ -69,12 +68,12 @@ public final class TestObjects {
      * @return An array of dates in the given year on the given day.
      */
     public static LocalDate[] currentDates(final int year, final int dayOfMonth) {
-        return new LocalDate[] { new LocalDate(year, 1, dayOfMonth), new LocalDate(year, 2, dayOfMonth),
-                new LocalDate(year, 3, dayOfMonth), new LocalDate(year, 4, dayOfMonth),
-                new LocalDate(year, 5, dayOfMonth), new LocalDate(year, 6, dayOfMonth),
-                new LocalDate(year, 7, dayOfMonth), new LocalDate(year, 8, dayOfMonth),
-                new LocalDate(year, 9, dayOfMonth), new LocalDate(year, 10, dayOfMonth),
-                new LocalDate(year, 11, dayOfMonth), new LocalDate(year, 12, dayOfMonth) };
+        return new LocalDate[] { LocalDate.of(year, 1, dayOfMonth), LocalDate.of(year, 2, dayOfMonth),
+                LocalDate.of(year, 3, dayOfMonth), LocalDate.of(year, 4, dayOfMonth),
+                LocalDate.of(year, 5, dayOfMonth), LocalDate.of(year, 6, dayOfMonth),
+                LocalDate.of(year, 7, dayOfMonth), LocalDate.of(year, 8, dayOfMonth),
+                LocalDate.of(year, 9, dayOfMonth), LocalDate.of(year, 10, dayOfMonth),
+                LocalDate.of(year, 11, dayOfMonth), LocalDate.of(year, 12, dayOfMonth) };
     }
 
     private TestObjects() {

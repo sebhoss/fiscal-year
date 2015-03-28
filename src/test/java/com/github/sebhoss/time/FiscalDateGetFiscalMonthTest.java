@@ -13,10 +13,11 @@
  */
 package com.github.sebhoss.time;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.joda.time.LocalDate;
-import org.joda.time.Months;
 import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.experimental.theories.DataPoints;
@@ -33,7 +34,7 @@ public class FiscalDateGetFiscalMonthTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static final Months[]    START_DATES        = TestObjects.supportedMonths();
+    public static final Month[]     START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
@@ -46,95 +47,95 @@ public class FiscalDateGetFiscalMonthTest {
     /**
      * Ensures that for any given date the fiscal month will be decreased if the current calendar date is after the
      * fiscal year start date in an early fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldSubtractMonthWhenCurrentDateIsAfterStartDateInEarlyFiscalYear(final Months startDate,
+    public void shouldSubtractMonthWhenCurrentDateIsAfterStartDateInEarlyFiscalYear(final Month startDate,
             final LocalDate currentDate) {
         // Given
-        Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
+        Assume.assumeTrue(currentDate.getMonthValue() >= startDate.getValue());
         final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
-        final int fiscalMonth = fiscalDate.getFiscalMonth();
+        final long fiscalMonth = fiscalDate.getFiscalMonth();
 
         // Then
-        Assert.assertEquals(currentDate.getMonthOfYear() - startDate.getMonths() + 1, fiscalMonth);
+        Assert.assertEquals(currentDate.getMonthValue() - startDate.getValue() + 1, fiscalMonth);
     }
 
     /**
      * Ensures that for any given date the fiscal month will be increased if the current calendar date is before the
      * fiscal year start date in an early fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldAddMonthWhenCurrentDateIsBeforeStartDateInEarlyFiscalYear(final Months startDate,
+    public void shouldAddMonthWhenCurrentDateIsBeforeStartDateInEarlyFiscalYear(final Month startDate,
             final LocalDate currentDate) {
         // Given
-        Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
+        Assume.assumeTrue(currentDate.getMonthValue() < startDate.getValue());
         final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).createFromCalendarDate(currentDate);
-        final int fiscalMonthOffset = currentDate.monthOfYear().getMaximumValue() - startDate.getMonths() + 1;
+        final int fiscalMonthOffset = Month.values().length - startDate.getValue() + 1;
 
         // When
-        final int fiscalMonth = fiscalDate.getFiscalMonth();
+        final long fiscalMonth = fiscalDate.getFiscalMonth();
 
         // Then
-        Assert.assertEquals(currentDate.getMonthOfYear() + fiscalMonthOffset, fiscalMonth);
+        Assert.assertEquals(currentDate.getMonthValue() + fiscalMonthOffset, fiscalMonth);
     }
 
     /**
      * Ensures that for any given date the fiscal month will be decreased if the current calendar date is after the
      * fiscal year start date in a late fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldSubtractMonthWhenCurrentDateIsAfterStartDateInLateFiscalYear(final Months startDate,
+    public void shouldSubtractMonthWhenCurrentDateIsAfterStartDateInLateFiscalYear(final Month startDate,
             final LocalDate currentDate) {
         // Given
-        Assume.assumeTrue(currentDate.getMonthOfYear() >= startDate.getMonths());
+        Assume.assumeTrue(currentDate.getMonthValue() >= startDate.getValue());
         final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
-        final int fiscalMonth = fiscalDate.getFiscalMonth();
+        final long fiscalMonth = fiscalDate.getFiscalMonth();
 
         // Then
-        Assert.assertEquals(currentDate.getMonthOfYear() - startDate.getMonths() + 1, fiscalMonth);
+        Assert.assertEquals(currentDate.getMonthValue() - startDate.getValue() + 1, fiscalMonth);
     }
 
     /**
      * Ensures that for any given date the fiscal month will be increased if the current calendar date is before the
      * fiscal year start date in a late fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldAddMonthWhenCurrentDateIsBeforeStartDateInLateFiscalYear(final Months startDate,
+    public void shouldAddMonthWhenCurrentDateIsBeforeStartDateInLateFiscalYear(final Month startDate,
             final LocalDate currentDate) {
         // Given
-        Assume.assumeTrue(currentDate.getMonthOfYear() < startDate.getMonths());
+        Assume.assumeTrue(currentDate.getMonthValue() < startDate.getValue());
         final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).createFromCalendarDate(currentDate);
-        final int fiscalMonthOffset = currentDate.monthOfYear().getMaximumValue() - startDate.getMonths() + 1;
+        final int fiscalMonthOffset = Month.values().length - startDate.getValue() + 1;
 
         // When
-        final int fiscalMonth = fiscalDate.getFiscalMonth();
+        final long fiscalMonth = fiscalDate.getFiscalMonth();
 
         // Then
-        Assert.assertEquals(currentDate.getMonthOfYear() + fiscalMonthOffset, fiscalMonth);
+        Assert.assertEquals(currentDate.getMonthValue() + fiscalMonthOffset, fiscalMonth);
     }
 
 }

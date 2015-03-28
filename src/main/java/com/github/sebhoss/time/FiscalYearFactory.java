@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 
 /**
  * Creates {@link FiscalDate fiscal dates} from {@link LocalDate local dates}. Thus converts between calendar years to

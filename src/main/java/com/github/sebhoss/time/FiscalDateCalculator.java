@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 
 /**
  * Performs calculations between fiscal- and calendar-years based dates.
@@ -18,28 +18,28 @@ public interface FiscalDateCalculator {
      *            The calendar date to transform.
      * @return The fiscal year of the given calendar date.
      */
-    int calculateFiscalYear(LocalDate calendarDate);
+    long calculateFiscalYear(LocalDate calendarDate);
 
     /**
      * @param calendarDate
      *            The calendar date to transform.
      * @return The fiscal month of the given calendar date.
      */
-    int calculateFiscalMonth(LocalDate calendarDate);
+    long calculateFiscalMonth(LocalDate calendarDate);
 
     /**
      * @param calendarDate
      *            The calendar date to transform.
      * @return The fiscal week-of-year of the given calendar date.
      */
-    int calculateFiscalWeekOfYear(LocalDate calendarDate);
+    long calculateFiscalWeekOfYear(LocalDate calendarDate);
 
     /**
      * @param calendarDate
      *            The calendar date to transform.
      * @return The fiscal day-of-year of the given calendar date.
      */
-    int calculateFiscalDayOfYear(LocalDate calendarDate);
+    long calculateFiscalDayOfYear(LocalDate calendarDate);
 
     /**
      * @param fiscalYear

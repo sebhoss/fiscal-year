@@ -7,6 +7,5 @@
 /**
  * Time related classes.
  */
-@com.github.sebhoss.nullanalysis.NotNullByDefault
 package com.github.sebhoss.time;
 

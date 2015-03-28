@@ -6,11 +6,12 @@
  */
 package com.github.sebhoss.time;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+
 import javax.annotation.Nullable;
 
 import com.github.sebhoss.nullanalysis.Nullsafe;
-
-import org.joda.time.LocalDate;
 
 final class FiscalDateImplementation implements FiscalDate {
 
@@ -23,87 +24,87 @@ final class FiscalDateImplementation implements FiscalDate {
     }
 
     @Override
-    public int getFiscalYear() {
+    public long getFiscalYear() {
         return fiscalDateCalculator.calculateFiscalYear(currentCalendarDate);
     }
 
     @Override
-    public int getFiscalMonth() {
+    public long getFiscalMonth() {
         return fiscalDateCalculator.calculateFiscalMonth(currentCalendarDate);
     }
 
     @Override
-    public int getFiscalDayOfYear() {
+    public long getFiscalDayOfYear() {
         return fiscalDateCalculator.calculateFiscalDayOfYear(currentCalendarDate);
     }
 
     @Override
-    public int getFiscalWeekOfWeekyear() {
+    public long getFiscalWeekOfWeekyear() {
         return fiscalDateCalculator.calculateFiscalWeekOfYear(currentCalendarDate);
     }
 
     @Override
-    public int getCalendarYear() {
+    public long getCalendarYear() {
         return currentCalendarDate.getYear();
     }
 
     @Override
-    public int getCalendarMonth() {
-        return currentCalendarDate.getMonthOfYear();
+    public long getCalendarMonth() {
+        return currentCalendarDate.getMonthValue();
     }
 
     @Override
-    public int getCalendarDayOfMonth() {
+    public long getCalendarDayOfMonth() {
         return currentCalendarDate.getDayOfMonth();
     }
 
     @Override
-    public int getCalendarDayOfYear() {
+    public long getCalendarDayOfYear() {
         return currentCalendarDate.getDayOfYear();
     }
 
     @Override
-    public int getCalendarWeekOfWeekyear() {
-        return currentCalendarDate.getWeekOfWeekyear();
+    public long getCalendarWeekOfWeekyear() {
+        return currentCalendarDate.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
     }
 
     @Override
-    public FiscalDate plusYears(final int years) {
+    public FiscalDate plusYears(final long years) {
         return copyWithNewDate(currentCalendarDate.plusYears(years));
     }
 
     @Override
-    public FiscalDate plusMonths(final int months) {
+    public FiscalDate plusMonths(final long months) {
         return copyWithNewDate(currentCalendarDate.plusMonths(months));
     }
 
     @Override
-    public FiscalDate plusWeeks(final int weeks) {
+    public FiscalDate plusWeeks(final long weeks) {
         return copyWithNewDate(currentCalendarDate.plusWeeks(weeks));
     }
 
     @Override
-    public FiscalDate plusDays(final int days) {
+    public FiscalDate plusDays(final long days) {
         return copyWithNewDate(currentCalendarDate.plusDays(days));
     }
 
     @Override
-    public FiscalDate minusYears(final int years) {
+    public FiscalDate minusYears(final long years) {
         return copyWithNewDate(currentCalendarDate.minusYears(years));
     }
 
     @Override
-    public FiscalDate minusMonths(final int months) {
+    public FiscalDate minusMonths(final long months) {
         return copyWithNewDate(currentCalendarDate.minusMonths(months));
     }
 
     @Override
-    public FiscalDate minusWeeks(final int weeks) {
+    public FiscalDate minusWeeks(final long weeks) {
         return copyWithNewDate(currentCalendarDate.minusWeeks(weeks));
     }
 
     @Override
-    public FiscalDate minusDays(final int days) {
+    public FiscalDate minusDays(final long days) {
         return copyWithNewDate(currentCalendarDate.minusDays(days));
     }
 

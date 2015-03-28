@@ -13,10 +13,11 @@
  */
 package com.github.sebhoss.time;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.joda.time.LocalDate;
-import org.joda.time.Months;
 import org.junit.Assert;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -32,7 +33,7 @@ public class FiscalDateGetCalendarDayOfMonthTest {
 
     /** @see TestObjects#supportedMonths() */
     @DataPoints
-    public static final Months[]    START_DATES        = TestObjects.supportedMonths();
+    public static final Month[]     START_DATES        = TestObjects.supportedMonths();
 
     /** @see TestObjects#startDates() */
     @DataPoints
@@ -44,19 +45,19 @@ public class FiscalDateGetCalendarDayOfMonthTest {
 
     /**
      * Ensures that for any given date the correct calendar day of month will be returned in an early fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldReturnCalendarDayOfMonthInEarlyFiscalYear(final Months startDate, final LocalDate currentDate) {
+    public void shouldReturnCalendarDayOfMonthInEarlyFiscalYear(final Month startDate, final LocalDate currentDate) {
         // Given
         final FiscalDate fiscalDate = FiscalYears.earlyFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
-        final int calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
+        final long calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
 
         // Then
         Assert.assertEquals(currentDate.getDayOfMonth(), calendarDayOfMonth);
@@ -64,19 +65,19 @@ public class FiscalDateGetCalendarDayOfMonthTest {
 
     /**
      * Ensures that for any given date the correct calendar day of month will be returned in a late fiscal year.
-     * 
+     *
      * @param startDate
      *            The start date of the fiscal year.
      * @param currentDate
      *            The current date in a calendar year.
      */
     @Theory
-    public void shouldReturnCalendarDayOfMonthInLateFiscalYear(final Months startDate, final LocalDate currentDate) {
+    public void shouldReturnCalendarDayOfMonthInLateFiscalYear(final Month startDate, final LocalDate currentDate) {
         // Given
         final FiscalDate fiscalDate = FiscalYears.lateFiscalYear(startDate).createFromCalendarDate(currentDate);
 
         // When
-        final int calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
+        final long calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
 
         // Then
         Assert.assertEquals(currentDate.getDayOfMonth(), calendarDayOfMonth);

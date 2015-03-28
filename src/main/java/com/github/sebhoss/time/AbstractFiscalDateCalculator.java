@@ -6,9 +6,9 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
-import org.joda.time.Weeks;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
 
@@ -19,9 +19,9 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
     }
 
     @Override
-    public final int calculateFiscalMonth(final LocalDate calendarDate) {
-        final int calendarMonth = calendarDate.getMonthOfYear();
-        final int maximumNumberOfMonths = calendarDate.monthOfYear().getMaximumValue();
+    public final long calculateFiscalMonth(final LocalDate calendarDate) {
+        final int calendarMonth = calendarDate.getMonthValue();
+        final int maximumNumberOfMonths = Month.values().length;
 
         if (fiscalYearStartMonth <= calendarMonth) {
             return calendarMonth - fiscalYearStartMonth + 1;
@@ -31,25 +31,25 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
     }
 
     @Override
-    public final int calculateFiscalWeekOfYear(final LocalDate calendarDate) {
+    public final long calculateFiscalWeekOfYear(final LocalDate calendarDate) {
         final LocalDate fiscalYearStartDate = createMatchingFiscalYearStartDate(calendarDate);
 
-        return Weeks.weeksBetween(fiscalYearStartDate, calendarDate).getWeeks() + 1;
+        return ChronoUnit.WEEKS.between(fiscalYearStartDate, calendarDate) + 1;
     }
 
     @Override
-    public final int calculateFiscalDayOfYear(final LocalDate calendarDate) {
+    public final long calculateFiscalDayOfYear(final LocalDate calendarDate) {
         final LocalDate fiscalYearStartDate = createMatchingFiscalYearStartDate(calendarDate);
 
-        return Days.daysBetween(fiscalYearStartDate, calendarDate).getDays() + 1;
+        return ChronoUnit.DAYS.between(fiscalYearStartDate, calendarDate) + 1;
     }
 
     private LocalDate createMatchingFiscalYearStartDate(final LocalDate calendarDate) {
-        if (fiscalYearStartMonth <= calendarDate.getMonthOfYear()) {
-            return new LocalDate(calendarDate.getYear(), fiscalYearStartMonth, 1);
+        if (fiscalYearStartMonth <= calendarDate.getMonthValue()) {
+            return LocalDate.of(calendarDate.getYear(), fiscalYearStartMonth, 1);
         }
 
-        return new LocalDate(calendarDate.getYear() - 1, fiscalYearStartMonth, 1);
+        return LocalDate.of(calendarDate.getYear() - 1, fiscalYearStartMonth, 1);
     }
 
     @Override
@@ -57,7 +57,7 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
         final int calendarYear = calculateCalendarYear(fiscalYear, fiscalMonth);
         final int calendarMonth = calculateCalendarMonth(fiscalMonth);
 
-        return new LocalDate(calendarYear, calendarMonth, fiscalDay);
+        return LocalDate.of(calendarYear, calendarMonth, fiscalDay);
     }
 
     private final int calculateCalendarMonth(final int fiscalMonth) {

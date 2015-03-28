@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.Months;
+import java.time.Month;
 
 /**
  * Factory for {@link FiscalYearFactory}s.
@@ -18,8 +18,8 @@ public final class FiscalYears {
      *            The calendar month in the previous calendar year where the fiscal year begins.
      * @return A new factory which creates appropriate {@link FiscalDate}s.
      */
-    public static FiscalYearFactory earlyFiscalYear(final Months startMonth) {
-        return earlyFiscalYear(startMonth.getMonths());
+    public static FiscalYearFactory earlyFiscalYear(final Month startMonth) {
+        return earlyFiscalYear(startMonth.getValue());
     }
 
     /**
@@ -36,8 +36,8 @@ public final class FiscalYears {
      *            The calendar month in the current calendar year where the fiscal year begins.
      * @return A new factory which creates appropriate {@link FiscalDate}s.
      */
-    public static FiscalYearFactory lateFiscalYear(final Months startMonth) {
-        return lateFiscalYear(startMonth.getMonths());
+    public static FiscalYearFactory lateFiscalYear(final Month startMonth) {
+        return lateFiscalYear(startMonth.getValue());
     }
 
     /**

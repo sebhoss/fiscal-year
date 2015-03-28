@@ -13,9 +13,10 @@
  */
 package com.github.sebhoss.time;
 
+import java.time.LocalDate;
+
 import com.github.sebhoss.warnings.CompilerWarnings;
 
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -41,7 +42,7 @@ public class FiscalDateCalculatorTest {
 
         // then
         Assert.assertEquals(2012, calendarDate.getYear());
-        Assert.assertEquals(11, calendarDate.getMonthOfYear());
+        Assert.assertEquals(11, calendarDate.getMonthValue());
         Assert.assertEquals(1, calendarDate.getDayOfMonth());
     }
 
@@ -61,7 +62,7 @@ public class FiscalDateCalculatorTest {
 
         // then
         Assert.assertEquals(2013, calendarDate.getYear());
-        Assert.assertEquals(3, calendarDate.getMonthOfYear());
+        Assert.assertEquals(3, calendarDate.getMonthValue());
         Assert.assertEquals(1, calendarDate.getDayOfMonth());
     }
 

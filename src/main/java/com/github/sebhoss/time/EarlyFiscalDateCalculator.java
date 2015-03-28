@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.time;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 
 final class EarlyFiscalDateCalculator extends AbstractFiscalDateCalculator {
 
@@ -15,8 +15,8 @@ final class EarlyFiscalDateCalculator extends AbstractFiscalDateCalculator {
     }
 
     @Override
-    public int calculateFiscalYear(final LocalDate calendarDate) {
-        final int offset = fiscalYearStartMonth <= calendarDate.getMonthOfYear() ? 1 : 0;
+    public long calculateFiscalYear(final LocalDate calendarDate) {
+        final int offset = fiscalYearStartMonth <= calendarDate.getMonthValue() ? 1 : 0;
 
         return calendarDate.getYear() + offset;
     }
