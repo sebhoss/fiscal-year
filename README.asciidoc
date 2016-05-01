@@ -25,7 +25,7 @@ Your company doesn't work from January 1 to December 31? Try fiscal-year, a smal
 
 == Development Status
 
-The map based implementation works as expected, Guava and JSR107 is pushed back to a later date.
+All currently required feature are implemented. This project is in maintenance mode.
 
 == Usage
 
