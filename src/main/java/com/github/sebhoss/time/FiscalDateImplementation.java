@@ -9,10 +9,6 @@ package com.github.sebhoss.time;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
-import javax.annotation.Nullable;
-
-import com.github.sebhoss.nullanalysis.Nullsafe;
-
 final class FiscalDateImplementation implements FiscalDate {
 
     private final FiscalDateCalculator fiscalDateCalculator;
@@ -108,8 +104,8 @@ final class FiscalDateImplementation implements FiscalDate {
         return copyWithNewDate(currentCalendarDate.minusDays(days));
     }
 
-    private FiscalDateImplementation copyWithNewDate(final @Nullable LocalDate newDate) {
-        return new FiscalDateImplementation(fiscalDateCalculator, Nullsafe.nullsafe(newDate));
+    private FiscalDateImplementation copyWithNewDate(final LocalDate newDate) {
+        return new FiscalDateImplementation(fiscalDateCalculator, newDate);
     }
 
     @Override
