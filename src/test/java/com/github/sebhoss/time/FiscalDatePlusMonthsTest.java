@@ -1,8 +1,8 @@
 /*
- * Copyright © 2013 Sebastian Hoß <mail@shoss.de>
- * This work is free. You can redistribute it and/or modify it under the
- * terms of the Do What The Fuck You Want To Public License, Version 2,
- * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+ * This file is part of fiscal-year. It is subject to the license terms in the LICENSE file found in the top-level
+ * directory of this distribution and at http://creativecommons.org/publicdomain/zero/1.0/. No part of fiscal-year,
+ * including this file, may be copied, modified, propagated, or distributed except according to the terms contained
+ * in the LICENSE file.
  */
 package com.github.sebhoss.time;
 
