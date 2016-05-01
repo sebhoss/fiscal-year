@@ -1,0 +1,137 @@
+= Fiscal-Year
+Sebastian Hoß <https://github.com/sebhoss[@sebhoss]>
+:github-org: sebhoss
+:project-name: fiscal-year
+:project-group: com.github.sebhoss
+:toc:
+:toc-placement: preamble
+
+image:https://img.shields.io/badge/license-cc%20zero-000000.svg["CC Zero", link="http://creativecommons.org/publicdomain/zero/1.0/"]
+image:https://img.shields.io/maven-central/v/{project-group}/{project-name}.svg?style=flat-square["Maven Central", link="https://maven-badges.herokuapp.com/maven-central/{project-group}/{project-name}"]
+image:https://www.openhub.net/p/{project-name}/widgets/project_thin_badge.gif["Open Hub statistics", link="https://www.openhub.net/p/{project-name}"]
+image:https://img.shields.io/travis/{github-org}/{project-name}/master.svg?style=flat-square["Build Status", link="https://travis-ci.org/{github-org}/{project-name}"]
+image:https://img.shields.io/coveralls/{github-org}/{project-name}/master.svg?style=flat-square["", link="https://coveralls.io/github/{github-org}/{project-name}"]
+image:https://img.shields.io/gitter/room/{github-org}/{project-name}.svg?style=flat-square["join chat", link="https://gitter.im/{github-org}/{project-name}"]
+
+
+Your company doesn't work from January 1 to December 31? Try fiscal-year, a small Java library which converts calendar-year based dates to corresponding dates in a link:http://en.wikipedia.org/wiki/Fiscal_year[fiscal year].
+
+== Features
+
+* Immutable data structure
+* Convert from/to Java 8 `LocalDate`
+* Math operations like `plusDays`, `minusWeeks`
+* Factories to create/configure
+
+== Development Status
+
+The map based implementation works as expected, Guava and JSR107 is pushed back to a later date.
+
+== Usage
+
+First create a `FiscalYearFactory` which holds the configuration of your company's fiscal year:
+
+[source, java]
+----
+// fiscal year starts at month 11 of the 'previous' year
+FiscalYearFactory earlyYearFactory = FiscalYears.earlyFiscalYear(11);
+
+// fiscal year starts at month 3 in the 'current' year
+FiscalYearFactory lateYearFactory = FiscalYears.lateFiscalYear(3);
+----
+
+Then use this factory to convert a calendar-year based `LocalDate` to a corresponding `FiscalDate`:
+
+[source, java]
+----
+LocalDate calendarDate = LocalDate.now();
+FiscalDate fiscalDate = factory.createFromCalendarDate(calendarDate);
+----
+
+Use fiscal-year based values directly to create an instance of `FiscalDate`:
+
+[source, java]
+----
+FiscalDate fiscalDate = factory.create(2015, 3, 25);
+----
+
+Query the newly created `FiscalDate` to retrieve the usual suspects of attributes:
+
+[source, java]
+----
+int fiscalYear = fiscalDate.getFiscalYear();
+int fiscalMonth = fiscalDate.getFiscalMonth();
+int fiscalDayOfYear = fiscalDate.getFiscalDayOfYear();
+int fiscalWeekOfWeekyear = fiscalDate.getFiscalWeekOfWeekyear();
+
+int calendarYear = fiscalDate.getCalendarYear();
+int calendarMonth = fiscalDate.getCalendarMonth();
+int calendarDayOfMonth = fiscalDate.getCalendarDayOfMonth();
+int calendarDayOfYear = fiscalDate.getCalendarDayOfYear();
+int calendarWeekOfWeekyear = fiscalDate.getCalendarWeekOfWeekyear();
+----
+
+Do some math with dates as follows:
+
+[source, java]
+----
+FiscalDate newDate = fiscalDate.plusYears(int years);
+FiscalDate newDate = fiscalDate.plusMonths(int months);
+FiscalDate newDate = fiscalDate.plusWeeks(int weeks);
+FiscalDate newDate = fiscalDate.plusDays(int days);
+FiscalDate newDate = fiscalDate.minusYears(int years);
+FiscalDate newDate = fiscalDate.minusMonths(int months);
+FiscalDate newDate = fiscalDate.minusWeeks(int weeks);
+FiscalDate newDate = fiscalDate.minusDays(int days);
+----
+
+Or finally convert it back to a `LocalDate`:
+
+[source, java]
+----
+LocalDate calendarDate = fiscalDate.asLocalDate();
+----
+
+=== Integration
+
+To use this project just declare the following dependency inside your POM:
+
+[source, xml]
+----
+<dependency>
+  <groupId>com.github.sebhoss</groupId>
+  <artifactId>fiscal-year</artifactId>
+  <version>${version.fiscal-year}</version>
+</dependency>
+----
+
+Replace `${version.fiscal-year}` with the link:http://search.maven.org/#search%7Cga%7C1%7Cg%3Acom.github.sebhoss%20a%3Afiscal-year[latest release]. This project follows the link:http://semver.org/[semantic versioning guidelines].
+
+=== Compatibility
+
+This project is compatible with the following Java versions:
+
+.Java compatibility
+|===
+| | 1.X.Y | 2.X.Y
+
+| Java 8
+| ✓
+| ✓
+|===
+
+== License
+
+To the extent possible under law, the author(s) have dedicated all copyright
+and related and neighboring rights to this software to the public domain
+worldwide. This software is distributed without any warranty.
+
+You should have received a copy of the CC0 Public Domain Dedication along
+with this software. If not, see http://creativecommons.org/publicdomain/zero/1.0/.
+
+== Mirrors
+
+* https://github.com/sebhoss/fiscal-year
+* https://bitbucket.org/sebhoss/fiscal-year
+* https://gitlab.com/sebastian.hoss/fiscal-year
+* http://repo.or.cz/fiscal-year.java.git
