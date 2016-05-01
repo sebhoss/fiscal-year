@@ -23,7 +23,7 @@
   <!--                               INFORMATIONS                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <artifactId>fiscal-year</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.0</version>
   <packaging>jar</packaging>
   <url>https://github.com/sebhoss/fiscal-year</url>
   <inceptionYear>2013</inceptionYear>
