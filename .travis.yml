@@ -13,3 +13,11 @@ cache:
 
 after_success:
 - mvn clean test jacoco:report coveralls:report
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/c514bdbeffe2e43eadb5
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: always    # options: [always|never|change] default: always
