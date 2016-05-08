@@ -14,16 +14,17 @@
   <!--                                 PARENT                                  -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <parent>
-    <groupId>com.github.sebhoss</groupId>
-    <artifactId>java-parent</artifactId>
-    <version>3.0.0</version>
+    <groupId>de.xn__ho_hia.maven.parents</groupId>
+    <artifactId>maven-parents-java-stable</artifactId>
+    <version>0.0.0-SNAPSHOT</version>
   </parent>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               INFORMATIONS                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <groupId>de.xn__ho_hia.utils.fiscal_year</groupId>
   <artifactId>fiscal-year</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <url>https://github.com/sebhoss/fiscal-year</url>
   <inceptionYear>2013</inceptionYear>
@@ -43,20 +44,9 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               DEPENDENCIES                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.github.sebhoss.bom</groupId>
-        <artifactId>auto-managed</artifactId>
-        <version>2016.02.07</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.github.sebhoss</groupId>
+      <groupId>de.xn__ho_hia.utils.jdt</groupId>
       <artifactId>suppress-warnings</artifactId>
     </dependency>
     <dependency>
