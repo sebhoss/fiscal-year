@@ -11,10 +11,7 @@ import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.xn__ho_hia.utils.fiscal_year.EarlyFiscalDateCalculator;
-import de.xn__ho_hia.utils.fiscal_year.FiscalDateCalculator;
-import de.xn__ho_hia.utils.fiscal_year.LateFiscalDateCalculator;
-import de.xn__ho_hia.utils.jdt.CompilerWarnings;
+import de.xn__ho_hia.quality.suppression.CompilerWarnings;
 
 /**
  * Test cases for {@link FiscalDateCalculator}.

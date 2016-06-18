@@ -8,13 +8,10 @@ package de.xn__ho_hia.utils.fiscal_year;
 
 import java.time.LocalDate;
 
-import de.xn__ho_hia.utils.fiscal_year.FiscalDate;
-import de.xn__ho_hia.utils.fiscal_year.FiscalYearFactory;
-import de.xn__ho_hia.utils.fiscal_year.FiscalYears;
-import de.xn__ho_hia.utils.jdt.CompilerWarnings;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import de.xn__ho_hia.quality.suppression.CompilerWarnings;
 
 /**
  * Test cases for {@link FiscalDate#getFiscalDayOfYear()}.

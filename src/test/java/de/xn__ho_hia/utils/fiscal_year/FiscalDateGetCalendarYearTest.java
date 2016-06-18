@@ -9,15 +9,13 @@ package de.xn__ho_hia.utils.fiscal_year;
 import java.time.LocalDate;
 import java.time.Month;
 
-import de.xn__ho_hia.utils.fiscal_year.FiscalDate;
-import de.xn__ho_hia.utils.fiscal_year.FiscalYears;
-import de.xn__ho_hia.utils.jdt.CompilerWarnings;
-
 import org.junit.Assert;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
+
+import de.xn__ho_hia.quality.suppression.CompilerWarnings;
 
 /**
  * Test cases for {@link FiscalDate#getCalendarYear()}.
