@@ -1,18 +1,26 @@
-= Fiscal-Year
+= Fiscal-Year image:https://img.shields.io/badge/email-%40metio-brightgreen.svg?style=social&label=mail["Discuss on Google Groups", link="https://groups.google.com/forum/#!forum/metio"] image:https://img.shields.io/badge/irc-%23metio.wtf-brightgreen.svg?style=social&label=IRC["Chat on IRC", link="http://webchat.freenode.net/?channels=metio.wtf"]
 Sebastian Hoß <https://github.com/sebhoss[@sebhoss]>
 :github-org: sebhoss
 :project-name: fiscal-year
-:project-group: com.github.sebhoss
+:project-group: de.xn--ho-hia.utils.fiscal_year
+:coverity-project: 9338
+:codacy-project: cd259740862044fa9d06e7788b7d577f
 :toc:
 :toc-placement: preamble
 
 image:https://img.shields.io/badge/license-cc%20zero-000000.svg?style=flat-square["CC Zero", link="http://creativecommons.org/publicdomain/zero/1.0/"]
-image:https://img.shields.io/maven-central/v/{project-group}/{project-name}.svg?style=flat-square["Maven Central", link="https://maven-badges.herokuapp.com/maven-central/{project-group}/{project-name}"]
+pass:[<span class="image"><a class="image" href="https://maven-badges.herokuapp.com/maven-central/de.xn--ho-hia.utils.fiscal_year/fiscal-year"><img src="https://img.shields.io/maven-central/v/de.xn--ho-hia.utils.fiscal_year/fiscal-year.svg?style=flat-square" alt="Maven Central"></a></span>]
+pass:[<span class="image"><a class="image" href="https://www.javadoc.io/doc/de.xn--ho-hia.utils.fiscal_year/fiscal-year"><img src="https://www.javadoc.io/badge/de.xn--ho-hia.utils.fiscal_year/fiscal-year.svg?style=flat-square&color=blue" alt="Read JavaDocs"></a></span>]
+image:https://reposs.herokuapp.com/?path={github-org}/{project-name}&style=flat-square["Repository size"]
 image:https://www.openhub.net/p/{project-name}/widgets/project_thin_badge.gif["Open Hub statistics", link="https://www.openhub.net/p/{project-name}"]
-image:https://img.shields.io/travis/{github-org}/{project-name}/master.svg?style=flat-square["Build Status", link="https://travis-ci.org/{github-org}/{project-name}"]
-image:https://img.shields.io/coveralls/{github-org}/{project-name}/master.svg?style=flat-square["", link="https://coveralls.io/github/{github-org}/{project-name}"]
-image:https://img.shields.io/gitter/room/{github-org}/{project-name}.svg?style=flat-square["join chat", link="https://gitter.im/{github-org}/{project-name}"]
 
+image:https://img.shields.io/travis/{github-org}/{project-name}/master.svg?style=flat-square["Build Status", link="https://travis-ci.org/{github-org}/{project-name}"]
+image:https://img.shields.io/coveralls/{github-org}/{project-name}/master.svg?style=flat-square["Code Coverage", link="https://coveralls.io/github/{github-org}/{project-name}"]
+image:https://img.shields.io/coverity/scan/{coverity-project}.svg?style=flat-square["Coverity Scan Result", link="https://scan.coverity.com/projects/{github-org}-{project-name}"]
+image:https://img.shields.io/codacy/grade/{codacy-project}.svg?style=flat-square["Codacy Code Quality", link="https://www.codacy.com/app/mail_7/{project-name}"]
+image:https://img.shields.io/badge/forkable-yes-brightgreen.svg?style=flat-square["Codacy Code Quality", link="https://basicallydan.github.io/forkability/?u={github-org}&r={project-name}"]
+image:https://img.shields.io/maintenance/yes/2016.svg?style=flat-square["Is this thing still maintained?"]
+image:https://img.shields.io/bountysource/team/metio/activity.svg?style=flat-square["Bounties on open tickets", link="https://www.bountysource.com/teams/metio"]
 
 Your company doesn't work from January 1 to December 31? Try fiscal-year, a small Java library which converts calendar-year based dates to corresponding dates in a link:http://en.wikipedia.org/wiki/Fiscal_year[fiscal year].
 

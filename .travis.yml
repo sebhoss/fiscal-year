@@ -11,9 +11,33 @@ cache:
   directories:
   - $HOME/.m2
 
+# see https://github.com/trautonen/coveralls-maven-plugin#jacoco
 after_success:
 - mvn clean test jacoco:report coveralls:report
 
-# see https://docs.travis-ci.com/user/notifications/#IRC-notification
+addons:
+  # see https://scan.coverity.com/travis_ci
+  # see https://docs.travis-ci.com/user/coverity-scan/
+  coverity_scan:
+    project:
+      name: "sebhoss/fiscal-year"
+      description: "Build submitted via Travis CI"
+    notification_email: "metio@googlegroups.com"
+    build_command_prepend: "mvn clean"
+    build_command: "mvn -DskipTests=true compile"
+    branch_pattern: master
+
+# see https://docs.travis-ci.com/user/notifications/
 notifications:
+  # see https://docs.travis-ci.com/user/notifications/#IRC-notification
   irc: "chat.freenode.net#metio.wtf"
+  # see https://docs.travis-ci.com/user/notifications/#Email-notifications
+  email:
+    - "metio@googlegroups.com"
+
+env:
+  global:
+    # exposes 'COVERITY_SCAN_TOKEN'
+    # see https://scan.coverity.com/travis_ci
+    # see https://docs.travis-ci.com/user/coverity-scan/
+    - secure: "CQn0FP19HMS/G/hmx7U/z2VjfZwAZ3qc+O4KIl1ZCVeffdElCikfkJkeQYsLcnszjRZHH26z4gVVZs0M3NNC/B2galavDitWzBxrzmvjQzyF41A+YK1+TFmWwWYAdBD18xWZucInrGCiOtfaKwV9LxcevK5CZq3xgLdIoL28634="
