@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-== link:++https://github.com/sebhoss/null-analysis/compare/null-analysis-null-analysis-2.0.0...master++[Unreleased]
+== link:++https://github.com/sebhoss/null-analysis/compare/null-analysis-2.0.0...master++[Unreleased]
 
 === Changed
 
