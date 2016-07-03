@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-== link:++https://github.com/sebhoss/null-analysis/compare/null-analysis-2.0.0...master++[Unreleased]
+== link:++https://github.com/sebhoss/null-analysis/compare/fiscal-year-3.0.0-20160703134710...master++[Unreleased]
+
+== link:++https://github.com/sebhoss/null-analysis/compare/fiscal-year-2.0.0...fiscal-year-3.0.0-20160703134710++[3.0.0] - 2016-07-03
 
 === Changed
 
