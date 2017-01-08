@@ -4,3 +4,4 @@
 .pmdruleset.xml
 .settings/
 target/
+.ansible-git-*
