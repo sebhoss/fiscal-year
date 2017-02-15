@@ -13,6 +13,10 @@ import java.time.Month;
  */
 public final class FiscalYears {
 
+    private FiscalYears() {
+        // Factory class
+    }
+
     /**
      * @param startMonth
      *            The calendar month in the previous calendar year where the fiscal year begins.
@@ -47,10 +51,6 @@ public final class FiscalYears {
      */
     public static FiscalYearFactory lateFiscalYear(final int startMonth) {
         return new FiscalYearFactory(new LateFiscalDateCalculator(startMonth));
-    }
-
-    private FiscalYears() {
-        // Factory class
     }
 
 }
