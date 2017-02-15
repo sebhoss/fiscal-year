@@ -24,10 +24,10 @@ abstract class AbstractFiscalDateCalculator implements FiscalDateCalculator {
         final int maximumNumberOfMonths = Month.values().length;
 
         if (fiscalYearStartMonth <= calendarMonth) {
-            return calendarMonth - fiscalYearStartMonth + 1;
+            return calendarMonth - fiscalYearStartMonth + 1L;
         }
 
-        return calendarMonth + maximumNumberOfMonths - fiscalYearStartMonth + 1;
+        return calendarMonth + maximumNumberOfMonths - fiscalYearStartMonth + 1L;
     }
 
     @Override

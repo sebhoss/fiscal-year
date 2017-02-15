@@ -18,7 +18,7 @@ public interface FiscalDateCalculator {
      *            The calendar date to transform.
      * @return The fiscal year of the given calendar date.
      */
-    long calculateFiscalYear(LocalDate calendarDate);
+    int calculateFiscalYear(LocalDate calendarDate);
 
     /**
      * @param calendarDate

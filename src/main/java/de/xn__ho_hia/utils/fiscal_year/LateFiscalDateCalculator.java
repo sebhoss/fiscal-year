@@ -15,7 +15,7 @@ final class LateFiscalDateCalculator extends AbstractFiscalDateCalculator {
     }
 
     @Override
-    public long calculateFiscalYear(final LocalDate calendarDate) {
+    public int calculateFiscalYear(final LocalDate calendarDate) {
         final int offset = fiscalYearStartMonth <= calendarDate.getMonthValue() ? 0 : -1;
 
         return calendarDate.getYear() + offset;
